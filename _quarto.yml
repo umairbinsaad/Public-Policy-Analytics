@@ -1,0 +1,22 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "UMAIR BIN SAADD - MUSA 5080 Portfolio"
+  navbar:
+    left:
+      - href: https://umairbinsaad.github.io/lab_2/lab2_template.html
+        text: Home
+      - text: Labs
+        menu:
+          - href: https://umairbinsaad.github.io/lab_2/lab2_template.html
+            text: "Lab 2: Spatial Analysis"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    code-fold: true
+
+execute:
+  freeze: auto
