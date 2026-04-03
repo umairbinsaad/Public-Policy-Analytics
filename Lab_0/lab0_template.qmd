@@ -39,13 +39,11 @@ library(tidyverse)
 
 
 
-```{r setup}
-car_data <- read_csv("data/car_sales_data.csv")
+```{r setuup}
+car_data <- read_csv("D:/Ph.D/US Pakistan Knowledge Corridore/Upenn/Subjects/Public Policy Analytics/Public-Policy-Analytics/Lab_0/data/car_sales_data.csv")
 ```
 
 
-```{r setup}
-```
 
 # Exercise 1: Getting to Know Your Data
 
@@ -208,7 +206,7 @@ colnames(GG)
 ```{r multiple-conditions}
 # Find cars that are EITHER Honda OR Nissan
 filtered_data <- filter(GG, Manufacturer == "Honda"  | Manufacturer == "Nisan" )
-View(filtered_data)
+
 
 # Find cars with price between $20,000 and $35,000
 
