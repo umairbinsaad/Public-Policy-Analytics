@@ -10,12 +10,12 @@ website:
         text: Home
       - text: Labs
         menu:
+          - href: https://umairbinsaad.github.io/Public-Policy-Analytics/Lab_0/lab0_template.html
+            text: "Lab 0: Getting Started with dplyr"
+          - href: https://umairbinsaad.github.io/Public-Policy-Analytics/lab_1/lab1_template (1).html
+            text: "Lab 1: Census Data Quality for Policy Decisions"
           - href: https://umairbinsaad.github.io/Public-Policy-Analytics/lab_4/lab_4.html
-            text: "cccccccccccc"
-          - href: https://umairbinsaad.github.io/Public-Policy-Analytics/lab_4/lab_4.html
-            text: "zxczxczxccx"
-          - href: https://umairbinsaad.github.io/Public-Policy-Analytics/lab_4/lab_4.html
-            text: "Lab 4: Spatial Analysis"
+            text: "Lab 4: Spatial Predictive Analysis"
 format:
   html:
     theme: cosmo
