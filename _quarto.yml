@@ -11,6 +11,7 @@ website:
       - text: Labs
         menu:
           - href: https://umairbinsaad.github.io/lab_2/lab2_template.html
+          - href: https://umairbinsaad.github.io/Public-Policy-Analytics/lab_4/lab_4.html
             text: "Lab 2: Spatial Analysis"
 format:
   html:
