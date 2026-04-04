@@ -680,8 +680,8 @@ View(Philidelphia_data)
 #| warning: false
 #| results: 'hide'
 
-parks_geojson <- st_read("C:/Users/Umair Bin Saad/Desktop/Green Space Equity/parks/PPR_Program_Sites.geojson")
-parks_shapefile <- st_read("C:/Users/Umair Bin Saad/Desktop/Green Space Equity/parks/PPR_Program_Sites.shp")
+parks_geojson <- st_read("D:/Ph.D/US Pakistan Knowledge Corridore/Upenn/Subjects/Public Policy Analytics/Public-Policy-Analytics/lab_2/Green Space Equity/parks/PPR_Program_Sites.geojson")
+parks_shapefile <- st_read("D:/Ph.D/US Pakistan Knowledge Corridore/Upenn/Subjects/Public Policy Analytics/Public-Policy-Analytics/lab_2/Green Space Equity/parks/PPR_Program_Sites.shp")
 parks_shapefile <- st_transform(parks_shapefile, crs = 26917)
 parks_shapefile_coords_matrix <- st_coordinates(parks_shapefile)
 
@@ -692,7 +692,7 @@ View(parks_shapefile)
 
 
 
-street_trees <- st_read("C:/Users/Umair Bin Saad/Desktop/Green Space Equity/Street Trees/ppr_tree_inventory_2025.shp")
+street_trees <- st_read("D:/Ph.D/US Pakistan Knowledge Corridore/Upenn/Subjects/Public Policy Analytics/Public-Policy-Analytics/lab_2/Green Space Equity/Street Trees/ppr_tree_inventory_2025.shp")
 street_trees <- st_transform(street_trees, crs = 26917)
 st_crs(street_trees)
 
@@ -875,6 +875,10 @@ neighborhoods while yellow areas represent other tracts ",
 
  st_agr(buffer_area_parks) = "constant"
  st_agr(low_income_Philidelphia_data) = "constant"
+ low_income_Philidelphia_data <- st_transform(
+  low_income_Philidelphia_data,
+  st_crs(buffer_area_parks)
+)
 overlaps_buffer_area_parks_with_vulnerable_tracts <- st_intersection(buffer_area_parks, low_income_Philidelphia_data)
 
 
@@ -895,6 +899,10 @@ The purple areas on the map represent the low-income and minority neighborhoods 
 
 
 ```{r, echo=FALSE}
+street_trees <- st_transform(
+  street_trees,
+  st_crs(Philidelphia_data)
+)
 points_in_polygons <- st_join(street_trees, Philidelphia_data, left = FALSE)
 
 
