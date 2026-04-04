@@ -32,7 +32,7 @@ Drawing on our Week 2 discussion of algorithmic bias, you need to assess not jus
 
 ## Submission Instructions
 
-**Submit by posting your updated portfolio link on Canvas.** Your assignment should be accessible at `https://umairbinsaad.github.io/lab_1/lab1_template%20(1).html`
+**Submit by posting your updated portfolio link on Canvas.** Your assignment should be accessible at github.
 
 Make sure to update your `_quarto.yml` navigation to include this assignment under an "Labs" menu.
 
@@ -50,7 +50,10 @@ If there is a special character like a colon, you need use double quote mark so 
 
 # Setup
 
-```{r setup}
+```{r, echo=FALSE}
+#| message: false
+#| warning: false
+#| results: 'hide'  
 # Load required packages (hint: you need tidycensus, tidyverse, and knitr)
 library(tidyverse)
 library(tidycensus)
@@ -89,7 +92,11 @@ View(my_state)
 
 
 
-```{r county-data}
+```{r, echo=FALSE}
+#| message: false
+#| warning: false
+#| results: 'hide'  
+#| 
 # Write your get_acs() code here
 pa_data <- get_acs(
   geography = "county",
@@ -139,7 +146,11 @@ head(pa_clean)
 
 **Hint:** Use `mutate()` with `case_when()` for the categories.
 
-```{r income-reliability}
+```{r, echo=FALSE}
+#| message: false
+#| warning: false
+#| results: 'hide'  
+#| 
 # Calculate MOE percentage and reliability categories using mutate()
 
 # Create a summary showing count of counties in each reliability category
@@ -177,7 +188,10 @@ View(MOE)
 
 **Hint:** Use `arrange()`, `slice()`, and `select()` functions.
 
-```{r high-uncertainty}
+```{r, echo=FALSE}
+#| message: false
+#| warning: false
+#| results: 'hide'  
 # Create table of top 5 counties by MOE percentage
 # Format as table with kable() - include appropriate column names and caption
 top_5_cont <- head(MOE[order(-MOE$moe_percentage), ], 5)
@@ -208,7 +222,10 @@ View(selected_data)
 
 **Strategy:** Choose counties that represent different reliability levels (e.g., 1 high confidence, 1 moderate, 1 low confidence) to compare how data quality varies.
 
-```{r select-counties}
+```{r, echo=FALSE}
+#| message: false
+#| warning: false
+#| results: 'hide'  
 # Use filter() to select 2-3 counties from your county_reliability data
 # Store the selected counties in a variable called selected_counties
 
@@ -238,7 +255,10 @@ head(selected_data)
 - Output format: wide
 - **Challenge:** You'll need county codes, not names. Look at the GEOID patterns in your county data for hints.
 
-```{r tract-demographics}
+```{r, echo=FALSE}
+#| message: false
+#| warning: false
+#| results: 'hide'  
 # Define your race/ethnicity variables with descriptive names
 
 # Use get_acs() to retrieve tract-level data
@@ -280,7 +300,10 @@ head(PAGES)
 
 **Your Task:** Analyze the demographic patterns in your selected areas.
 
-```{r demographic-analysis}
+```{r, echo=FALSE}
+#| message: false
+#| warning: false
+#| results: 'hide'  
 # Find the tract with the highest percentage of Hispanic/Latino residents
 # Hint: use arrange() and slice() to get the top tract
 
@@ -339,7 +362,10 @@ kable(PP,
 - Flag tracts where any demographic variable has MOE > 15%
 - Create summary statistics
 
-```{r demographic-moe}
+```{r, echo=FALSE}
+#| message: false
+#| warning: false
+#| results: 'hide'  
 # Calculate MOE percentages for white, Black, and Hispanic variables
 
 # Hint: use the same formula as before (margin/estimate * 100)
@@ -387,7 +413,10 @@ head(YY)
 
 **Your Task:** Investigate whether data quality problems are randomly distributed or concentrated in certain types of communities.
 
-```{r pattern-analysis}
+```{r, echo=FALSE}
+#| message: false
+#| warning: false
+#| results: 'hide'  
 # Group tracts by whether they have high MOE issues
 
 # Calculate average characteristics for each group:
@@ -444,7 +473,10 @@ In Part 3 we moved to Neighborhood-Level Analysis. We Selected 2 counties from o
 
 **Your Task:** Create a decision framework for algorithm implementation.
 
-```{r recommendations-data}
+```{r, echo=FALSE}
+#| message: false
+#| warning: false
+#| results: 'hide'  
 
 # Create a summary table using your county reliability data
 # Include: county name, median income, MOE percentage, reliability category
