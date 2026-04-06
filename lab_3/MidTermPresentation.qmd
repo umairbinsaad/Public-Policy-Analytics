@@ -1,0 +1,155 @@
+---
+title: "Predicting Home Prices in Philadelphia"
+subtitle: "Improving Property Tax Assessments"
+author: "Alejandro Duque, Ethan Harner, Wesley Nay, Umair Bin Saad <br> NHD&S Advisors"
+date: "March 17, 2026"
+format: 
+  revealjs:
+    theme: simple
+    slide-number: true
+    chalkboard: true
+    code-line-numbers: true
+    incremental: false
+    smaller: true
+    scrollable: true
+---
+
+## Motivation & Research Question
+
+### Motivation
+
+The City of Philadelphia is seeking to improve its Automated Valuation Model (AVM) for property tax assessments. A good AVM is important to ensure fair taxation based on current market values.
+
+### Research Question
+
+Which structural characteristics, spatial features, and fixed effects best predict property sale prices in Philadelphia?
+
+## Data Sources
+
+- **Philadelphia property sales, 2024–2025**
+- **Census ACS 2024 5-Year Estimates**
+  - income
+  - educational attainment
+  - racial and ethnic composition
+  - population density
+- **OpenDataPhilly**
+  - parks
+  - SEPTA and Regional Rail access
+  - violent crime
+  - vacant buildings
+  - neighborhood boundaries
+
+## Spatial Pattern of Sale Prices
+
+:::: {.columns}
+::: {.column width="50%"}
+
+### Residential sale prices across the city
+
+![](images/all_sales.png){fig-cap="Residential Sale Prices"}{width="85%"}
+
+:::
+
+::: {.column width="50%"}
+
+### Neighborhood value categories
+
+![](images/neighborhood_cat.png){fig-cap="Housing Price by Neighborhood Value Category"}{width="85%"}
+
+:::
+::::
+---
+
+## What Drives Prices?
+:::: {.columns}
+::: {.column width="50%"}
+
+![](images/structureage.png){fig-cap="Age of Property vs Sale Price" width="85%"}
+
+
+![](images/livablearea.png){fig-cap="Total Livable Area vs Sale Price" width="85%"}
+
+:::
+
+::: {.column width="50%"}
+
+![](images/vacancyrate.png){fig-cap="Neighborhood Vacancy Rate vs Sale Price" width="85%"}
+
+![](images/proximitycentercity.png){fig-cap="Distance to City Hall (downtown) vs Sale Price" width="85%"}
+:::
+::::
+
+## Model Building
+
+### We built four models in sequence
+
+- **Model 1:** Structural housing features only
+- **Model 2:** Structural features + census tract characteristics
+- **Model 3:** Structural + census + spatial accessibility and neighborhood conditions
+- **Model 4:** Full model with fixed effects and interaction terms
+
+## Model Performance: Final Model (Fixed Effects) Performed the Best
+
+### Performance improved as we added neighborhood and spatial information
+
+![](images/model_performance_table.png){fig-cap="Comparison of All Models"}
+
+The structural-only model provides a baseline, but adding neighborhood census data and spatial variables improves performance. The **best-performing model** is the full model with fixed effects and interactions, suggesting that local context matters a great deal for predicting sale prices.
+
+## Final Model: Actual vs. Predicted Prices
+
+![](images/fe_model.png)
+
+The final model captures the broad geography of Philadelphia’s housing market fairly well. It reproduces the major high-value and low-value submarkets, even though some local prediction error remains.
+
+## What Mattered Most
+
+### Strong predictors in the final model
+
+- **Total livable area**
+- **Nearby sale prices**
+- **Neighborhood category / neighborhood fixed effects**
+- **Distance to downtown**
+- **Neighborhood vacancy**
+- **Violent crime**
+- **Bathrooms and garage spaces**
+
+Structural characteristics matter, but they are not enough on their own. The strongest model is the one that combines **housing features with neighborhood and spatial context**.
+
+## Where the Model Struggles
+
+- unusual or luxury properties
+- rapidly changing neighborhoods
+- homes with limited quality information in administrative data
+- atypical sales that may not reflect normal market behavior
+
+These are cases where price may depend on factors not fully observed in the data, such as renovations, block-level dynamics, investor demand, or non-standard transactions.
+
+## Recommendations
+
+For a better AVM in Philadelphia
+
+- incorporate **neighborhood fixed effects**
+- include **spatial measures** like downtown access, vacancy, and crime
+- use **recent nearby sales** to reflect local market conditions
+- flag unusual properties for **manual review**
+
+## Limitations & Next Steps
+
+### Limitations
+
+- administrative data do not fully capture housing quality
+- some neighborhood measures are only available at the tract level
+- the model may miss very local block-by-block market variation
+- results are based on recent sales only
+
+### Next steps
+
+- test nonlinear machine learning approaches
+- add richer measures of condition and renovation quality
+- explore finer-grained spatial effects
+- compare results directly to the current City AVM
+
+---
+
+
