@@ -376,5 +376,82 @@
     "title": "Lab 2: Spatial Analysis and Visualization",
     "section": "Median number of otherE people:",
     "text": "Median number of otherE people:\n\nMedian number of otherE people of Philadelphia is 0. So, I will consider the tracts with otherE population less than 10 as minority neighborhoods because these tracts have a significantly lower number of residents categorized as “other” compared to the median, indicating that they may have a higher concentration of minority populations who could be at greater risk of lacking access to green spaces and other resources This threshold allows us to focus on areas that are likely to face more significant challenges in terms of environmental justice and access to green space for minority communities."
+  },
+  {
+    "objectID": "lab_3/MidTermPresentation.html#motivation-research-question",
+    "href": "lab_3/MidTermPresentation.html#motivation-research-question",
+    "title": "Predicting Home Prices in Philadelphia",
+    "section": "Motivation & Research Question",
+    "text": "Motivation & Research Question\nMotivation\nThe City of Philadelphia is seeking to improve its Automated Valuation Model (AVM) for property tax assessments. A good AVM is important to ensure fair taxation based on current market values.\nResearch Question\nWhich structural characteristics, spatial features, and fixed effects best predict property sale prices in Philadelphia?"
+  },
+  {
+    "objectID": "lab_3/MidTermPresentation.html#data-sources",
+    "href": "lab_3/MidTermPresentation.html#data-sources",
+    "title": "Predicting Home Prices in Philadelphia",
+    "section": "Data Sources",
+    "text": "Data Sources\n\nPhiladelphia property sales, 2024–2025\nCensus ACS 2024 5-Year Estimates\n\nincome\neducational attainment\nracial and ethnic composition\npopulation density\n\nOpenDataPhilly\n\nparks\nSEPTA and Regional Rail access\nviolent crime\nvacant buildings\nneighborhood boundaries"
+  },
+  {
+    "objectID": "lab_3/MidTermPresentation.html#spatial-pattern-of-sale-prices",
+    "href": "lab_3/MidTermPresentation.html#spatial-pattern-of-sale-prices",
+    "title": "Predicting Home Prices in Philadelphia",
+    "section": "Spatial Pattern of Sale Prices",
+    "text": "Spatial Pattern of Sale Prices\n\n\nResidential sale prices across the city\n{width=“85%”}\n\nNeighborhood value categories\n{width=“85%”}"
+  },
+  {
+    "objectID": "lab_3/MidTermPresentation.html#what-drives-prices",
+    "href": "lab_3/MidTermPresentation.html#what-drives-prices",
+    "title": "Predicting Home Prices in Philadelphia",
+    "section": "What Drives Prices?",
+    "text": "What Drives Prices?"
+  },
+  {
+    "objectID": "lab_3/MidTermPresentation.html#model-building",
+    "href": "lab_3/MidTermPresentation.html#model-building",
+    "title": "Predicting Home Prices in Philadelphia",
+    "section": "Model Building",
+    "text": "Model Building\nWe built four models in sequence\n\nModel 1: Structural housing features only\nModel 2: Structural features + census tract characteristics\nModel 3: Structural + census + spatial accessibility and neighborhood conditions\nModel 4: Full model with fixed effects and interaction terms"
+  },
+  {
+    "objectID": "lab_3/MidTermPresentation.html#model-performance-final-model-fixed-effects-performed-the-best",
+    "href": "lab_3/MidTermPresentation.html#model-performance-final-model-fixed-effects-performed-the-best",
+    "title": "Predicting Home Prices in Philadelphia",
+    "section": "Model Performance: Final Model (Fixed Effects) Performed the Best",
+    "text": "Model Performance: Final Model (Fixed Effects) Performed the Best\nPerformance improved as we added neighborhood and spatial information\n\nThe structural-only model provides a baseline, but adding neighborhood census data and spatial variables improves performance. The best-performing model is the full model with fixed effects and interactions, suggesting that local context matters a great deal for predicting sale prices."
+  },
+  {
+    "objectID": "lab_3/MidTermPresentation.html#final-model-actual-vs.-predicted-prices",
+    "href": "lab_3/MidTermPresentation.html#final-model-actual-vs.-predicted-prices",
+    "title": "Predicting Home Prices in Philadelphia",
+    "section": "Final Model: Actual vs. Predicted Prices",
+    "text": "Final Model: Actual vs. Predicted Prices\n\nThe final model captures the broad geography of Philadelphia’s housing market fairly well. It reproduces the major high-value and low-value submarkets, even though some local prediction error remains."
+  },
+  {
+    "objectID": "lab_3/MidTermPresentation.html#what-mattered-most",
+    "href": "lab_3/MidTermPresentation.html#what-mattered-most",
+    "title": "Predicting Home Prices in Philadelphia",
+    "section": "What Mattered Most",
+    "text": "What Mattered Most\nStrong predictors in the final model\n\nTotal livable area\nNearby sale prices\nNeighborhood category / neighborhood fixed effects\nDistance to downtown\nNeighborhood vacancy\nViolent crime\nBathrooms and garage spaces\n\nStructural characteristics matter, but they are not enough on their own. The strongest model is the one that combines housing features with neighborhood and spatial context."
+  },
+  {
+    "objectID": "lab_3/MidTermPresentation.html#where-the-model-struggles",
+    "href": "lab_3/MidTermPresentation.html#where-the-model-struggles",
+    "title": "Predicting Home Prices in Philadelphia",
+    "section": "Where the Model Struggles",
+    "text": "Where the Model Struggles\n\nunusual or luxury properties\nrapidly changing neighborhoods\nhomes with limited quality information in administrative data\natypical sales that may not reflect normal market behavior\n\nThese are cases where price may depend on factors not fully observed in the data, such as renovations, block-level dynamics, investor demand, or non-standard transactions."
+  },
+  {
+    "objectID": "lab_3/MidTermPresentation.html#recommendations",
+    "href": "lab_3/MidTermPresentation.html#recommendations",
+    "title": "Predicting Home Prices in Philadelphia",
+    "section": "Recommendations",
+    "text": "Recommendations\nFor a better AVM in Philadelphia\n\nincorporate neighborhood fixed effects\ninclude spatial measures like downtown access, vacancy, and crime\nuse recent nearby sales to reflect local market conditions\nflag unusual properties for manual review"
+  },
+  {
+    "objectID": "lab_3/MidTermPresentation.html#limitations-next-steps",
+    "href": "lab_3/MidTermPresentation.html#limitations-next-steps",
+    "title": "Predicting Home Prices in Philadelphia",
+    "section": "Limitations & Next Steps",
+    "text": "Limitations & Next Steps\nLimitations\n\nadministrative data do not fully capture housing quality\nsome neighborhood measures are only available at the tract level\nthe model may miss very local block-by-block market variation\nresults are based on recent sales only\n\nNext steps\n\ntest nonlinear machine learning approaches\nadd richer measures of condition and renovation quality\nexplore finer-grained spatial effects\ncompare results directly to the current City AVM"
   }
 ]
