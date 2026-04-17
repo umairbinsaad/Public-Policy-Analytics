@@ -2,441 +2,441 @@
   {
     "objectID": "lab_5/lab_5.html",
     "href": "lab_5/lab_5.html",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "",
     "text": "Philadelphia’s Indego bike share system faces the same operational challenge as every bike share system: rebalancing bikes to meet anticipated demand.\n\n\n\n\n\nPart 1 : Indego Trip Data (Q1 2025)"
   },
   {
     "objectID": "lab_5/lab_5.html#the-rebalancing-challenge-in-philadelphia",
     "href": "lab_5/lab_5.html#the-rebalancing-challenge-in-philadelphia",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "",
     "text": "Philadelphia’s Indego bike share system faces the same operational challenge as every bike share system: rebalancing bikes to meet anticipated demand."
   },
   {
     "objectID": "lab_5/lab_5.html#structure-of-assignment",
     "href": "lab_5/lab_5.html#structure-of-assignment",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "",
     "text": "Part 1 : Indego Trip Data (Q1 2025)"
   },
   {
     "objectID": "lab_5/lab_5.html#examine-the-data-structure",
     "href": "lab_5/lab_5.html#examine-the-data-structure",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Examine the Data Structure",
     "text": "Examine the Data Structure\n\nFrom observing the dataset, the coordinate system appears to be geographic coordinates (latitude and longitude), most likely based on the WGS 84 standard. This is suggested by the values in the start_lat, start_lon, end_lat, and end_lon columns, which fall within the typical range for latitude (around 39°) and longitude (around -75°), consistent with locations in the Philadelphia area.\n\n\nRegarding the date and time structure, both start_time and end_time are stored in a combined date-time format (e.g., 1/1/2025 0:05), where the date and time are not separated into different fields. The time is represented in a 24-hour format, and the structure does not include seconds, only hours and minutes. Additionally, the format appears to follow a month/day/year convention, which is common in the United States. This combined format will likely require parsing or conversion into a proper datetime object for easier analysis, such as extracting hours, days, or calculating trip durations more precisely."
   },
   {
     "objectID": "lab_5/lab_5.html#create-time-bins",
     "href": "lab_5/lab_5.html#create-time-bins",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Create Time Bins",
     "text": "Create Time Bins\n\nWe need to aggregate trips into hourly intervals for our panel data structure. Read up on the lubridate library for more information on the date/time data extraction.\n\nQuestion Explain the interval60 feature to someone else at your table.\n\ninterval60 is an hourly time grouping variable. It takes the exact trip start time and rounds it down to the beginning of that hour, so that all trips occurring within the same hour are grouped together for analysis. Example: If a trip starts at 8:45 AM, interval60 will store it as 8:00 AM, meaning it belongs to the 8–9 AM time bin.\n\n#EDA OF INDEGO DATA"
   },
   {
     "objectID": "lab_5/lab_5.html#trips-over-time",
     "href": "lab_5/lab_5.html#trips-over-time",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Trips Over Time",
     "text": "Trips Over Time\n\n\n\n\n\n\n\n\n\n\nQuestion: What patterns do you see? How does ridership change over time?\n\n\nRidership shows a clear upward trend from January to March/early April, as indicated by the rising dashed line, while also displaying a strong cyclical pattern with regular peaks and dips that likely reflect higher weekday commuting and lower weekend usage; at the same time, occasional sharp spikes and drops suggest the influence of external factors such as weather or special events, meaning overall demand is steadily increasing but remains highly variable over time."
   },
   {
     "objectID": "lab_5/lab_5.html#hourly-patterns",
     "href": "lab_5/lab_5.html#hourly-patterns",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Hourly Patterns",
     "text": "Hourly Patterns\n\n\n\n\n\n\n\n\n\n\nQuestion: When are the peak hours? How do weekends differ from weekdays?\n\n\n-Peak hours on weekdays occur during the morning (around 8–9 AM) and evening (around 5–6 PM), reflecting typical commuting patterns. In contrast, weekends show a single, broader peak in the afternoon (around 1–4 PM), with lower activity in the morning. This indicates that weekday ridership is driven by work-related travel, while weekend usage is more leisure-oriented and spread out over the day."
   },
   {
     "objectID": "lab_5/lab_5.html#top-stations",
     "href": "lab_5/lab_5.html#top-stations",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Top Stations",
     "text": "Top Stations\n\n\nTop 20 Indego Stations by Trip Origins\n\n\nstart_station\nstart_lat\nstart_lon\ntrips\n\n\n\n\n3,010\n39.94711\n-75.16618\n3,999\n\n\n3,032\n39.94527\n-75.17971\n2,842\n\n\n3,359\n39.94888\n-75.16978\n2,699\n\n\n3,020\n39.94855\n-75.19007\n2,673\n\n\n3,208\n39.95048\n-75.19324\n2,503\n\n\n3,244\n39.93865\n-75.16674\n2,486\n\n\n3,066\n39.94561\n-75.17348\n2,396\n\n\n3,362\n39.94816\n-75.16226\n2,387\n\n\n3,012\n39.94218\n-75.17747\n2,361\n\n\n3,028\n39.94061\n-75.14958\n2,348\n\n\n3,161\n39.95486\n-75.18091\n2,278\n\n\n3,101\n39.94295\n-75.15955\n2,274\n\n\n3,295\n39.95028\n-75.16027\n2,160\n\n\n3,054\n39.96250\n-75.17420\n2,123\n\n\n3,185\n39.95169\n-75.15888\n2,116\n\n\n3,038\n39.94781\n-75.19409\n2,111\n\n\n3,203\n39.94077\n-75.17227\n2,106\n\n\n3,059\n39.96244\n-75.16121\n2,027\n\n\n3,022\n39.95472\n-75.18323\n2,014\n\n\n3,063\n39.94633\n-75.16980\n2,014"
   },
   {
     "objectID": "lab_5/lab_5.html#loading-philadelphia-census-data",
     "href": "lab_5/lab_5.html#loading-philadelphia-census-data",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Loading Philadelphia Census Data",
     "text": "Loading Philadelphia Census Data\nWe are getting census tract data to add demographic context to our stations.\n\n\nPhiladelphia Census Data by tracts\n\n\nGEOID\nNAME\nTotal_Pop\nB01003_001M\nMed_Inc\nB19013_001M\nTotal_Commuters\nB08301_001M\nTransit_Commuters\nB08301_010M\nWhite_Pop\nB02001_002M\nMed_Home_Value\nB25077_001M\ngeometry\nPercent_Taking_Transit\nPercent_White\n\n\n\n\n42101001500\nCensus Tract 15; Philadelphia County; Pennsylvania\n3,251\n677\n110,859\n24,975\n2,073\n387\n429\n188\n2,185\n268\n568,300\n58,894\nMULTIPOLYGON (((-75.16558 3...\n20.694645\n67.2100892\n\n\n42101001800\nCensus Tract 18; Philadelphia County; Pennsylvania\n3,300\n369\n114,063\n30,714\n2,255\n308\n123\n66\n2,494\n381\n605,000\n34,876\nMULTIPOLYGON (((-75.1662 39...\n5.454546\n75.5757576\n\n\n42101002802\nCensus Tract 28.02; Philadelphia County; Pennsylvania\n5,720\n796\n78,871\n20,396\n3,032\n478\n685\n219\n3,691\n592\n350,600\n12,572\nMULTIPOLYGON (((-75.16735 3...\n22.592348\n64.5279720\n\n\n42101004001\nCensus Tract 40.01; Philadelphia County; Pennsylvania\n4,029\n437\n61,583\n22,293\n2,326\n383\n506\n144\n3,223\n380\n296,400\n22,333\nMULTIPOLYGON (((-75.17002 3...\n21.754084\n79.9950360\n\n\n42101006300\nCensus Tract 63; Philadelphia County; Pennsylvania\n4,415\n853\n32,347\n4,840\n1,980\n456\n534\n285\n182\n88\n76,600\n10,843\nMULTIPOLYGON (((-75.24686 3...\n26.969697\n4.1223103\n\n\n42101007700\nCensus Tract 77; Philadelphia County; Pennsylvania\n1,815\n210\n48,581\n13,812\n969\n189\n192\n71\n984\n190\n289,700\n118,720\nMULTIPOLYGON (((-75.21292 3...\n19.814242\n54.2148760\n\n\n42101008701\nCensus Tract 87.01; Philadelphia County; Pennsylvania\n3,374\n480\n59,722\n6,278\n2,427\n380\n658\n278\n2,111\n463\n579,500\n150,694\nMULTIPOLYGON (((-75.21272 3...\n27.111660\n62.5666864\n\n\n42101011000\nCensus Tract 110; Philadelphia County; Pennsylvania\n2,729\n734\n14,983\n6,647\n708\n281\n218\n184\n231\n112\n107,200\n12,137\nMULTIPOLYGON (((-75.21347 3...\n30.790961\n8.4646391\n\n\n42101011500\nCensus Tract 115; Philadelphia County; Pennsylvania\n4,881\n763\n81,154\n9,400\n2,593\n456\n438\n176\n357\n238\n157,700\n13,571\nMULTIPOLYGON (((-75.25592 3...\n16.891631\n7.3140750\n\n\n42101014000\nCensus Tract 140; Philadelphia County; Pennsylvania\n5,753\n1,162\n59,375\n17,602\n3,082\n682\n518\n235\n2,311\n778\n296,400\n215,482\nMULTIPOLYGON (((-75.16722 3...\n16.807268\n40.1703459\n\n\n42101016500\nCensus Tract 165; Philadelphia County; Pennsylvania\n2,850\n671\n26,172\n16,514\n1,086\n431\n454\n201\n156\n183\n81,300\n17,496\nMULTIPOLYGON (((-75.15239 3...\n41.804788\n5.4736842\n\n\n42101017202\nCensus Tract 172.02; Philadelphia County; Pennsylvania\n4,415\n917\n47,102\n16,473\n1,098\n355\n503\n245\n15\n24\n64,300\n10,025\nMULTIPOLYGON (((-75.18019 3...\n45.810565\n0.3397508\n\n\n42101019502\nCensus Tract 195.02; Philadelphia County; Pennsylvania\n3,901\n977\n28,205\n8,674\n830\n312\n256\n128\n760\n478\n75,000\n9,596\nMULTIPOLYGON (((-75.13767 4...\n30.843373\n19.4821841\n\n\n42101021400\nCensus Tract 214; Philadelphia County; Pennsylvania\n3,520\n502\n84,861\n41,664\n2,703\n465\n238\n114\n3,076\n467\n291,400\n21,901\nMULTIPOLYGON (((-75.23138 4...\n8.805031\n87.3863636\n\n\n42101024200\nCensus Tract 242; Philadelphia County; Pennsylvania\n4,595\n944\n33,172\n12,301\n1,882\n352\n601\n236\n819\n295\n214,400\n29,756\nMULTIPOLYGON (((-75.17512 4...\n31.934113\n17.8237214\n\n\n42101025500\nCensus Tract 255; Philadelphia County; Pennsylvania\n2,808\n381\n71,389\n25,023\n1,263\n247\n352\n189\n1,105\n180\n362,800\n36,887\nMULTIPOLYGON (((-75.19105 4...\n27.870150\n39.3518519\n\n\n42101027402\nCensus Tract 274.02; Philadelphia County; Pennsylvania\n7,055\n1,259\n61,430\n28,245\n2,618\n576\n528\n356\n843\n553\n123,600\n12,171\nMULTIPOLYGON (((-75.12764 4...\n20.168067\n11.9489724\n\n\n42101028600\nCensus Tract 286; Philadelphia County; Pennsylvania\n6,980\n1,383\n58,350\n9,833\n2,688\n800\n414\n276\n276\n256\n119,800\n16,536\nMULTIPOLYGON (((-75.13317 4...\n15.401786\n3.9541547\n\n\n42101030501\nCensus Tract 305.01; Philadelphia County; Pennsylvania\n4,946\n802\n43,673\n11,646\n1,745\n378\n437\n262\n392\n146\n144,000\n11,068\nMULTIPOLYGON (((-75.10395 4...\n25.042980\n7.9255964\n\n\n42101033500\nCensus Tract 335; Philadelphia County; Pennsylvania\n4,077\n759\n56,151\n12,454\n1,698\n452\n284\n142\n1,486\n390\n224,600\n7,758\nMULTIPOLYGON (((-75.07326 4...\n16.725559\n36.4483689"
   },
   {
     "objectID": "lab_5/lab_5.html#map-philadelphia-context",
     "href": "lab_5/lab_5.html#map-philadelphia-context",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Map Philadelphia Context",
     "text": "Map Philadelphia Context\n\n\n\n\n\n\n\n\n\nQuestion These data are in WGS84. If you wanted to calculate a spatial distance-based variable, like a buffer, should you use the dataset as it?\n\nNo, you should not use the dataset in WGS84 to calculate spatial distance-based variables like buffers because WGS84 is a geographic coordinate system that measures locations in degrees rather than consistent distance units; this can lead to inaccurate distance calculations. Instead, you should first transform the data into a projected coordinate system (such as a local UTM or state plane projection) that uses linear units like meters or feet, which ensures that distances and buffers are calculated correctly."
   },
   {
     "objectID": "lab_5/lab_5.html#join-census-data-to-stations",
     "href": "lab_5/lab_5.html#join-census-data-to-stations",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Join Census Data to Stations",
     "text": "Join Census Data to Stations\nWe’ll spatially join census characteristics to each bike station."
   },
   {
     "objectID": "lab_5/lab_5.html#dealing-with-missing-data",
     "href": "lab_5/lab_5.html#dealing-with-missing-data",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Dealing with missing data",
     "text": "Dealing with missing data\n\nWe need to decide what to do with the non-residential bike share stations. For this example, we are going to remove them – this is not necessarily the right way to do things always, but for the sake of simplicity, we are narrowing our scope to only stations in residential neighborhoods. We might opt to create a separate model for non-residential stations.."
   },
   {
     "objectID": "lab_5/lab_5.html#getting-weather-data",
     "href": "lab_5/lab_5.html#getting-weather-data",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Getting Weather Data",
     "text": "Getting Weather Data\nWeather significantly affects bike share demand! Let’s get hourly weather for Philadelphia."
   },
   {
     "objectID": "lab_5/lab_5.html#visualize-weather-patterns",
     "href": "lab_5/lab_5.html#visualize-weather-patterns",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Visualize Weather Patterns",
     "text": "Visualize Weather Patterns\nWho is glad it’s Spring!?\n\n\n\n\n\n\n\n\n\n\nThe plot shows that temperatures start relatively cool in January, decline into a colder period in late January to early February, and then gradually increase through March into early spring, as reflected by the upward-sloping red trend line. While there is substantial short-term fluctuation day to day, the overall pattern is a clear seasonal transition from winter to warmer spring conditions, with temperatures becoming both higher and slightly more variable toward the end of the period."
   },
   {
     "objectID": "lab_5/lab_5.html#aggregate-trips-to-station-hour-level",
     "href": "lab_5/lab_5.html#aggregate-trips-to-station-hour-level",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Aggregate Trips to Station-Hour Level",
     "text": "Aggregate Trips to Station-Hour Level\n\n\n\n\n\n\n\n\n\n\nThis histogram shows that Trip_Count is highly right-skewed. Most observations are concentrated at very low values (around 1–3 trips), which explains the tall bars on the left side. As the number of trips increases, the frequency drops sharply, creating a long tail extending to higher values (up to about 25). This indicates that while most individuals make only a few trips, a small number make significantly more, suggesting the presence of outliers or heavy users."
   },
   {
     "objectID": "lab_5/lab_5.html#create-complete-panel-structure",
     "href": "lab_5/lab_5.html#create-complete-panel-structure",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Create Complete Panel Structure",
     "text": "Create Complete Panel Structure\n\nNot every station has trips every hour. We need a complete panel where every station-hour combination exists (even if Trip_Count = 0).\n\n\n\n\n\n\n\n\n\n\n\nThis histogram also shows a strong right-skewed distribution of Trip_Count. The majority of observations are clustered at very low values (mostly 0–2 trips), with frequencies dropping rapidly as the number of trips increases. A long tail extends toward higher values, indicating that only a small proportion of individuals make many trips. This suggests the presence of a few high-trip outliers while most individuals have low trip counts."
   },
   {
     "objectID": "lab_5/lab_5.html#adding-time-features",
     "href": "lab_5/lab_5.html#adding-time-features",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Adding Time Features",
     "text": "Adding Time Features\n\nWe are enhancing the dataset by adding time-based features extracted from the interval60 variable. These include week, month, day of the week, hour, and date, which help capture temporal patterns in the data. Additionally, we create indicator variables for weekend (Saturday and Sunday) and rush hours (peak travel times in the morning and evening). These features will improve analysis and modeling by incorporating time-related behavioral trends in trip activity."
   },
   {
     "objectID": "lab_5/lab_5.html#joining-weather-data",
     "href": "lab_5/lab_5.html#joining-weather-data",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Joining Weather Data",
     "text": "Joining Weather Data\n\nWe are integrating weather data into the main dataset by joining study_panel with weather_complete using the common time variable interval60. This allows us to enrich trip data with environmental factors such as temperature and precipitation, which may influence travel behavior. After merging, we inspect the dataset structure and check for any missing values in key variables to ensure data quality for further analysis."
   },
   {
     "objectID": "lab_5/lab_5.html#why-temporal-lags",
     "href": "lab_5/lab_5.html#why-temporal-lags",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Why Temporal Lags?",
     "text": "Why Temporal Lags?\n\nIf there were 15 bike trips from Station A at 8:00 AM, there will probably be ~15 trips at 9:00 AM. We can use this temporal persistence to improve predictions.We still can’t use spatial lags in prediction. Temporal lags are different because time moves in one direction - past predicts the future, but the future does not predict the past. Spatial lags are non-directional and create circular prediction logic. We are enhancing the dataset by creating temporal lag features, which capture how past trip demand influences future demand. After sorting the data by station and time, we generate lag variables (e.g., 1 hour, 2 hours, 3 hours, 12 hours, and 1 day) within each station to reflect temporal patterns in trip activity. These features help improve predictive modeling by leveraging the idea that past behavior is a strong indicator of future demand. Finally, rows with missing lag values are removed to ensure a complete dataset for analysis."
   },
   {
     "objectID": "lab_5/lab_5.html#visualize-lag-correlations",
     "href": "lab_5/lab_5.html#visualize-lag-correlations",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Visualize Lag Correlations",
     "text": "Visualize Lag Correlations\n\n\n\n\n\n\n\n\n\n\nThis chart shows how trip demand at a single station changes over time and compares current demand with demand from one hour earlier and 24 hours earlier. The goal is to see whether past activity helps predict present usage. The small, scattered spikes and frequent zeros indicate that demand at this station is generally low and irregular. While there are occasional similarities—especially between current demand and the same time the previous day—these patterns are not very strong, suggesting only limited predictability. Overall, past demand provides some insight, but the station’s usage is fairly inconsistent."
   },
   {
     "objectID": "lab_5/lab_5.html#why-temporal-validation-matters",
     "href": "lab_5/lab_5.html#why-temporal-validation-matters",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Why Temporal Validation Matters",
     "text": "Why Temporal Validation Matters\n\nIn real operations, at 6:00 AM on March 15, we need to predict demand for March 15-31. We have data from Jan 1 - March 14, but NOT from March 15-31 (it hasn’t happened yet!).\n\nWrong approach: Train on weeks 10-13, test on weeks 1-9 (predicting past from future!) Correct approach: Train on weeks 1-9, test on weeks 10-13 (predicting future from past)\n-Training observations: 352,240 -Testing observations: 153,748 -Training date range: 20090 to 20151 -Testing date range: 20152 to 20178"
   },
   {
     "objectID": "lab_5/lab_5.html#model-1-baseline-time-weather",
     "href": "lab_5/lab_5.html#model-1-baseline-time-weather",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Model 1: Baseline (Time + Weather)",
     "text": "Model 1: Baseline (Time + Weather)\n\nThe model uses Monday as the baseline. Each coefficient represents the difference in expected trips per station-hour compared to Monday (dotw_simple2 = Tuesday, etc.).\n\nWeekday Pattern (Tue-Fri): -All weekdays have positive coefficients (0.033 to 0.059) -Wednesday has the highest weekday effect (+0.059) -Weekdays likely benefit from consistent commuting and work-related travel patterns Weekend Pattern (Sat-Sun): -Both weekend days have negative coefficients (-0.065 and -0.063) -This means fewer trips per station-hour than Monday, reflecting reduced commuting demand\nHourly Interpretation\n\nThe model uses hour 0 (midnight) as the baseline. Early morning hours (1–4) have negative coefficients (around -0.025 to -0.053), indicating lower activity than midnight. Activity begins to rise at hour 5 (+0.023) and increases sharply during the morning commute, reaching a peak at hour 8 (+0.550). Demand remains relatively high through late morning and afternoon, then rises again to the highest peak at hour 17 (+0.615), representing the evening rush. After this, trip activity steadily declines into the night, with very low levels by hour 23 (+0.042)."
   },
   {
     "objectID": "lab_5/lab_5.html#model-2-add-temporal-lags",
     "href": "lab_5/lab_5.html#model-2-add-temporal-lags",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Model 2: Add Temporal Lags",
     "text": "Model 2: Add Temporal Lags\nQuestion: Did adding lags improve R²? Why or why not?\n\nYes, adding temporal lag variables substantially improved the model’s R². In Model 1, the R² is 0.0788, meaning the model explains only about 7.9% of the variation in trip counts. After including lag variables in Model 2, the R² increases to 0.2293, indicating that about 22.9% of the variation is now explained. This improvement occurs because lag variables (such as 1-hour and 1-day lags) capture temporal dependence, meaning past trip demand strongly predicts future demand. Since bike usage follows consistent daily and hourly patterns, incorporating these past values provides much more predictive power than relying only on time, weather, and day-of-week variables."
   },
   {
     "objectID": "lab_5/lab_5.html#model-3-add-demographics",
     "href": "lab_5/lab_5.html#model-3-add-demographics",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Model 3: Add Demographics",
     "text": "Model 3: Add Demographics\n\nAdding the socioeconomic variables in Model 3 leads to a small improvement in R² compared to Model 2. Specifically, R² increases from 0.2293 in Model 2 to 0.2339 in Model 3, indicating only a modest gain in explanatory power. This suggests that while variables like median income, transit usage, and racial composition do have statistically significant effects, they add relatively little new information beyond what is already captured by temporal patterns and lag variables. The reason is that trip demand is primarily driven by strong temporal dynamics (captured by lag variables), whereas socioeconomic characteristics are more static and explain less variation at the hourly level. Thus, Model 3 improves performance slightly, but not nearly as dramatically as when temporal lags were introduced in Model 2."
   },
   {
     "objectID": "lab_5/lab_5.html#model-4-add-station-fixed-effects",
     "href": "lab_5/lab_5.html#model-4-add-station-fixed-effects",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Model 4: Add Station Fixed Effects",
     "text": "Model 4: Add Station Fixed Effects\n\nAdding the new variables in Model 4 results in a noticeable improvement in R² compared to Model 3. The R² increases from 0.2339 in Model 3 to 0.2623 in Model 4, indicating a meaningful gain in explanatory power. This suggests that the additional features included in Model 4 capture important variation in trip demand that was not explained by temporal, lag, and socioeconomic variables alone. Unlike the small improvement seen when moving from Model 2 to Model 3, this larger increase implies that Model 4 introduces variables with stronger predictive relevance. Overall, Model 4 provides a better fit, showing that these newly added factors contribute significantly to explaining bike trip patterns."
   },
   {
     "objectID": "lab_5/lab_5.html#model-5-add-rush-hour-interaction",
     "href": "lab_5/lab_5.html#model-5-add-rush-hour-interaction",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Model 5: Add Rush Hour Interaction",
     "text": "Model 5: Add Rush Hour Interaction\n\nAdding the new variables in Model 5 results in only a slight improvement in R² compared to Model 4. Specifically, R² increases from 0.2623 in Model 4 to 0.2672 in Model 5, indicating a modest gain in explanatory power. This suggests that the additional features in Model 5 contribute some new information, but their overall impact is relatively limited. Compared to the larger improvement observed from Model 3 to Model 4, this smaller increase implies diminishing returns, where most of the key variation in trip demand has already been captured by earlier models. Overall, Model 5 provides a slightly better fit, but the improvement is incremental rather than substantial."
   },
   {
     "objectID": "lab_5/lab_5.html#calculate-predictions-and-mae",
     "href": "lab_5/lab_5.html#calculate-predictions-and-mae",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Calculate Predictions and MAE",
     "text": "Calculate Predictions and MAE\n\nMean Absolute Error by Model (Test Set)\n\n\nModel\nMAE (trips)\n\n\n\n\n1. Time + Weather\n0.62\n\n\n2. + Temporal Lags\n0.54\n\n\n3. + Demographics\n0.53\n\n\n4. + Station FE\n0.53\n\n\n5. + Rush Hour Interaction\n0.53\n\n\n\n\nThe comparison of Mean Absolute Error (MAE) across models shows a clear improvement when temporal lag variables are introduced, followed by only minor gains from additional features. Model 1 (Time + Weather) has the highest error at 0.62, indicating relatively weaker predictive performance. When temporal lags are added in Model 2, MAE drops significantly to 0.54, demonstrating that past demand greatly improves prediction accuracy. Further additions, including demographics (Model 3), station fixed effects (Model 4), and the Rush Hour interaction (Model 5), lead to only slight improvements, reducing MAE marginally to 0.53. This pattern suggests that while these additional variables do contribute some predictive value, most of the accuracy gains come from capturing temporal dynamics, and later models show diminishing returns in improving prediction error.The comparison of Mean Absolute Error (MAE) across models shows a clear improvement when temporal lag variables are introduced, followed by only minor gains from additional features. Model 1 (Time + Weather) has the highest error at 0.62, indicating relatively weaker predictive performance. When temporal lags are added in Model 2, MAE drops significantly to 0.54, demonstrating that past demand greatly improves prediction accuracy. Further additions, including demographics (Model 3), station fixed effects (Model 4), and the Rush Hour interaction (Model 5), lead to only slight improvements, reducing MAE marginally to 0.53. This pattern suggests that while these additional variables do contribute some predictive value, most of the accuracy gains come from capturing temporal dynamics, and later models show diminishing returns in improving prediction error."
   },
   {
     "objectID": "lab_5/lab_5.html#visualize-model-comparison",
     "href": "lab_5/lab_5.html#visualize-model-comparison",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Visualize Model Comparison",
     "text": "Visualize Model Comparison\n\n\n\n\n\n\n\n\n\nQuestion: Which features gave us the biggest improvement?\n\nThe features that gave the biggest improvement were the temporal lag variables. This is evident from the sharp drop in MAE from 0.62 in Model 1 to 0.54 in Model 2, which is a much larger improvement compared to the minimal reductions seen in later models (only down to 0.53). This occurs because lag variables directly capture temporal dependence—past trip demand is a strong predictor of future demand. In contrast, additional features like demographics, station fixed effects, and Rush Hour contribute only small incremental improvements, indicating that most of the predictive power comes from the temporal patterns in the data."
   },
   {
     "objectID": "lab_5/lab_5.html#observed-vs.-predicted",
     "href": "lab_5/lab_5.html#observed-vs.-predicted",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Observed vs. Predicted",
     "text": "Observed vs. Predicted\nLet’s use our best model (Model 2) for error analysis.\n\n\n\n\n\n\n\n\n\nQuestion: Where is the model performing well? Where is it struggling?\n\nUsing Model 2, the model performs best during mid-day and overnight periods, where most points are closer to the red 45-degree line (perfect prediction) and the spread is relatively tight. This indicates that for low to moderate trip counts, the model predicts reasonably well with smaller errors. However, the model struggles during AM and PM rush hours, as well as the evening period. In these time slots, there is a wider spread of points and many observations fall below the red line, meaning the model tends to underpredict high trip counts. The gap between the green fitted line and the red perfect prediction line is also larger in these periods, showing that the model has difficulty capturing peak demand. Overall, the model handles low-demand periods better but has trouble accurately predicting high-demand spikes during busy hours."
   },
   {
     "objectID": "lab_5/lab_5.html#spatial-error-patterns",
     "href": "lab_5/lab_5.html#spatial-error-patterns",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Spatial Error Patterns",
     "text": "Spatial Error Patterns\nAre prediction errors clustered in certain parts of Philadelphia?\n\n\n\n\n\n\n\n\n\n\nYes, the map shows a clear pattern of spatial clustering in prediction errors. The errors are not randomly distributed; instead, they are concentrated in specific areas. The highest errors appear in the central urban neighborhoods, where the points are colored in darker shades (orange to purple), indicating larger MAE values. These areas likely correspond to dense, high-activity zones where demand is more volatile and harder to predict. In contrast, the outer or peripheral neighborhoods show lighter colors (yellow), suggesting lower errors and better model performance. Overall, the model performs well in less busy areas but struggles in central locations with higher and more variable demand."
   },
   {
     "objectID": "lab_5/lab_5.html#temporal-error-patterns",
     "href": "lab_5/lab_5.html#temporal-error-patterns",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Temporal Error Patterns",
     "text": "Temporal Error Patterns\nWhen are we most wrong?\n\nhe model’s errors vary clearly by time of day, showing distinct temporal patterns. It is most wrong during peak commuting periods, especially the PM rush, which has the highest MAE, followed by the AM rush. This indicates the model struggles to accurately capture sharp increases in demand during busy hours. Errors are moderate during mid-day and evening, where demand is more stable but still somewhat variable. In contrast, the model performs best overnight, with the lowest errors, reflecting more consistent and low demand levels. Overall, prediction accuracy decreases as demand becomes more volatile, particularly during rush hours."
   },
   {
     "objectID": "lab_5/lab_5.html#errors-and-demographics",
     "href": "lab_5/lab_5.html#errors-and-demographics",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Errors and Demographics",
     "text": "Errors and Demographics\nAre prediction errors related to neighborhood characteristics?\n\nYes, prediction errors show some relationship with neighborhood demographic characteristics, but the effects are relatively modest. Errors tend to increase slightly with median income, indicating that the model struggles a bit more in higher-income areas. Similarly, there is a positive relationship with the percentage of White residents, suggesting somewhat higher errors in those neighborhoods. In contrast, errors decrease as transit usage increases, meaning the model performs better in areas where more people rely on public transit. Overall, these relationships exist but are not very strong, indicating that demographics explain only a small portion of the variation in prediction errors compared to temporal factors.\n\n\n\n\n\n\n\n\n\n\n\nCritical Question: Are prediction errors systematically higher in certain demographic groups? What are the equity implications?\n\n\nThe plots suggest that prediction errors are somewhat systematically related to demographic characteristics, but the patterns are relatively weak rather than extreme. Errors tend to be slightly higher in higher-income neighborhoods and in areas with a higher percentage of White residents, while they are lower in neighborhoods with higher transit usage. This indicates that the model performs a bit better in transit-reliant areas and slightly worse in more affluent or less transit-dependent neighborhoods.\nFrom an equity perspective, this pattern does not strongly indicate that disadvantaged groups are being disproportionately affected by higher errors. In fact, if anything, errors are somewhat higher in more advantaged areas. However, the differences are small, suggesting that demographic factors are not a major driver of model bias. The main takeaway is that while there are minor systematic differences, prediction errors are driven much more by temporal demand patterns than by neighborhood demographics, and there is no clear evidence of significant inequitable performance across groups."
   },
   {
     "objectID": "lab_5/lab_5.html#loading-indego-trip-data-q4-2025",
     "href": "lab_5/lab_5.html#loading-indego-trip-data-q4-2025",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Loading Indego Trip Data (Q4 2025)",
     "text": "Loading Indego Trip Data (Q4 2025)\n\nLooking at the coordinate columns start_lat, start_lon, end_lat, and end_lon, the values fall around 39.9° latitude and -75.1° to -75.2° longitude, which is immediately recognizable as the Philadelphia, PA region. This confirms the coordinate system is standard WGS84 (EPSG:4326) — the familiar decimal degrees system used by GPS and most web mapping platforms, with negative longitude indicating the Western Hemisphere. As for the date and time structure, the start_time and end_time columns appear to store both date and time together in a single field formatted as M/D/YYYY H:MM, for example 10/1/2025 0:00. All visible rows fall on October 1, 2025, suggesting this may be a single day’s snapshot or the dataset begins from that date. The time portion is in 24-hour format and captures minute-level precision, which allows for calculating trip duration directly — and indeed the duration column already reflects the difference in minutes between start and end times. One thing worth noting is that since date and time are combined in one column, you would need to parse it using lubridate functions like mdy_hm() in R before doing any time-based analysis such as extracting hour of day, day of week, or week number."
   },
   {
     "objectID": "lab_5/lab_5.html#examine-the-data-structure-1",
     "href": "lab_5/lab_5.html#examine-the-data-structure-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Examine the Data Structure",
     "text": "Examine the Data Structure\n\nLooking at the dataset, it contains 325,361 total trips recorded in Q4 2025 across 294 unique start stations throughout the Philadelphia Indego bike-share network. Regarding the start_time and end_time columns, the date range showing values like 1759276800 to 1167225420 confirms that these columns are actually stored as Unix timestamps (seconds since January 1, 1970) rather than character strings as previously suspected. This means conversion should be done using as.POSIXct() with origin = “1970-01-01” rather than lubridate::mdy_hm(), which changes our earlier assessment. The trip_route_category column breaks down into 308,569 One Way trips and 16,792 Round Trip trips, confirming it is a categorical variable and should be converted to a factor. One Way trips dominate heavily, accounting for roughly 95% of all rides. The plan_duration column reveals five membership categories — Day Pass (8,988), Indego30 (168,054), Indego365 (127,625), Walk-up (20,677), and NULL (17) — rather than just raw day numbers. Indego30 is the most popular pass type, followed closely by Indego365, together accounting for nearly 90% of all trips. The 17 NULL values represent missing or unclassified membership data that may need handling during cleaning. The bike_id or a similar column distinguishes between electric (225,474) and standard (99,887) bikes, showing that electric bikes now make up roughly 69% of all trips, reflecting a strong shift toward e-bike usage in the system."
   },
   {
     "objectID": "lab_5/lab_5.html#create-time-bins-1",
     "href": "lab_5/lab_5.html#create-time-bins-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Create Time Bins",
     "text": "Create Time Bins\n\nWe need to aggregate trips into hourly intervals for our panel data structure. Read up on the lubridate library for more information on the date/time data extraction.\n\nQuestion Explaining the interval60 feature:\n\n-interval60 is an hourly time grouping variable. It takes the exact trip start time and rounds it down to the beginning of that hour, so that all trips occurring within the same hour are grouped together for analysis. Example: If a trip starts at 8:45 AM, interval60 will store it as 8:00 AM, meaning it belongs to the 8–9 AM time bin."
   },
   {
     "objectID": "lab_5/lab_5.html#trips-over-time-1",
     "href": "lab_5/lab_5.html#trips-over-time-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Trips Over Time",
     "text": "Trips Over Time\n\n\n\n\n\n\n\n\n\nQuestion: What patterns do you see? How does ridership change over time?\n\nRidership shows a clear downward trend from October to January, likely due to colder weather and seasonal effects. While there is significant day-to-day variation, overall usage steadily declines over time. Sharp drops are visible around late December, likely due to holidays such as Christmas and New Year, which reduce commuting and overall bike usage.\nRidership patterns in Q1 and Q4 show opposite seasonal trends. In Q1 (January to April), ridership exhibits a clear upward trend, increasing over time as weather conditions improve and daylight hours extend. In contrast, Q4 (October to January) shows a steady decline in ridership due to colder temperatures, shorter days, and less favorable cycling conditions.\nBoth quarters display significant daily fluctuations; however, Q1 includes a notable positive outlier (mid-February spike due to a major city event), while Q4 features sharp declines around late December, likely due to holidays such as Christmas and New Year. Overall, the comparison highlights strong seasonality in bike usage, with higher demand in warmer months and reduced activity in colder periods."
   },
   {
     "objectID": "lab_5/lab_5.html#hourly-patterns-1",
     "href": "lab_5/lab_5.html#hourly-patterns-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Hourly Patterns",
     "text": "Hourly Patterns\n\n\n\n\n\n\n\n\n\n\nQuestion: When are the peak hours? How do weekends differ from weekdays?\n\n\nPeak hours on weekdays occur around 8–9 AM and 5–6 PM, with the evening peak being the highest, reflecting strong commuting patterns. In contrast, weekends show a single, broader peak in the afternoon (around 2–4 PM) with lower activity in the morning. This indicates that weekday ridership is driven by work-related travel, while weekend usage is more evenly distributed and leisure-oriented. Ridership patterns in Q1 and Q4 show similar daily behavioral structures but differ significantly in intensity and seasonal context. In both quarters, weekdays exhibit a clear bimodal pattern with peaks in the morning (around 8–9 AM) and evening (around 5–6 PM), reflecting commuting activity, while weekends display a single, broader afternoon peak indicative of leisure use. However, Q1 shows lower overall ridership levels and less pronounced peaks, suggesting reduced demand during colder winter months. In contrast, Q4 demonstrates substantially higher ridership and sharper peaks—especially during weekday evening hours—indicating stronger commuting activity and greater overall usage. This difference highlights the impact of seasonal variation, where more favorable conditions in Q4 lead to increased bike usage, even though the underlying daily patterns remain consistent across both periods."
   },
   {
     "objectID": "lab_5/lab_5.html#top-stations-1",
     "href": "lab_5/lab_5.html#top-stations-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Top Stations",
     "text": "Top Stations"
   },
   {
     "objectID": "lab_5/lab_5.html#we-are-loading-philadelphia-census-data-again",
     "href": "lab_5/lab_5.html#we-are-loading-philadelphia-census-data-again",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "We are Loading Philadelphia Census Data again",
     "text": "We are Loading Philadelphia Census Data again\n\nWe’ll get census tract data again although it is not necessary but we are doing it again to add demographic context to our stations."
   },
   {
     "objectID": "lab_5/lab_5.html#map-philadelphia-context-1",
     "href": "lab_5/lab_5.html#map-philadelphia-context-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Map Philadelphia Context",
     "text": "Map Philadelphia Context\n\n\n\n\n\n\n\n\n\n\nQuestion These data are in WGS84. If you wanted to calculate a spatial distance-based variable, like a buffer, should you use the dataset as it?\n\n\nNo, you should not use the dataset in WGS84 to calculate spatial distance-based variables like buffers because WGS84 is a geographic coordinate system that measures locations in degrees rather than consistent distance units; this can lead to inaccurate distance calculations. Instead, you should first transform the data into a projected coordinate system (such as a local UTM or state plane projection) that uses linear units like meters or feet, which ensures that distances and buffers are calculated correctly."
   },
   {
     "objectID": "lab_5/lab_5.html#join-census-data-to-stations-1",
     "href": "lab_5/lab_5.html#join-census-data-to-stations-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Join Census Data to Stations",
     "text": "Join Census Data to Stations\nWe’ll spatially join census characteristics to each bike station."
   },
   {
     "objectID": "lab_5/lab_5.html#dealing-with-missing-data-1",
     "href": "lab_5/lab_5.html#dealing-with-missing-data-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Dealing with missing data",
     "text": "Dealing with missing data\n\nWe need to decide what to do with the non-residential bike share stations. For this example, we are going to remove them – this is not necessarily the right way to do things always, but for the sake of simplicity, we are narrowing our scope to only stations in residential neighborhoods. We might opt to create a separate model for non-residential stations.."
   },
   {
     "objectID": "lab_5/lab_5.html#get-weather-data",
     "href": "lab_5/lab_5.html#get-weather-data",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Get Weather Data",
     "text": "Get Weather Data\n\nThe date range for the weather data was updated using the riem_measures() function to retrieve hourly observations from the Philadelphia International Airport (PHL) station for the fourth quarter of 2025, specifically from October 1 to December 31. This adjustment ensures that the weather data is temporally aligned with the study period, allowing for more accurate analysis and integration with the trip and census datasets. By focusing only on this timeframe, the analysis captures relevant seasonal weather conditions, which helps improve the reliability of any conclusions regarding the relationship between weather patterns and travel behavior. Weather significantly affects bike share demand! Let’s get hourly weather for Philadelphia.\n\n\nCheck for any data structure changes?\n\n\nBoth Q1 and Q4 datasets show the exact same data structure: they contain the same four columns—interval60, Temperature, Precipitation, and Wind_Speed—in the same order, with identical timestamp formatting and hourly intervals. There are no added, removed, or rearranged fields, so structurally nothing has changed between the two datasets. The differences are purely in the data values themselves. The Q4 dataset has noticeably lower temperature values overall, includes some non-zero precipitation entries whereas the Q1 has only zeros, and shows a wider range and generally higher variation in wind speeds. These differences indicate that the datasets likely represent different conditions (such as a different time period), rather than any change in schema or data structure."
   },
   {
     "objectID": "lab_5/lab_5.html#visualize-weather-patterns-1",
     "href": "lab_5/lab_5.html#visualize-weather-patterns-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Visualize Weather Patterns",
     "text": "Visualize Weather Patterns\n\n\n\n\n\n\n\n\n\n\nThe Q4 2025 temperature chart for Philadelphia shows a clear transition from fall into winter, which contrasts strongly with the warming pattern observed in Q1. In Q4, temperatures start relatively high in October, often ranging between 60°F and 75°F, but gradually decline over time, as indicated by the downward-sloping red trend line. By November, temperatures become cooler and more variable, generally falling between 45°F and 60°F, reflecting typical late autumn conditions. The most significant change occurs in December, where temperatures drop sharply, with many observations between 25°F and 40°F, and occasional dips even lower, signaling the onset of winter. Although there is a slight increase toward the end of December, the overall pattern remains dominated by colder conditions. In contrast to Q1—where temperatures begin low and steadily rise toward spring—Q4 demonstrates the opposite seasonal trend, moving from mild to increasingly cold conditions. This highlights how Q4 captures a cooling trajectory into winter, whereas Q1 represents a warming transition out of winter, with Q4 also showing slightly more pronounced variability during the early fall period."
   },
   {
     "objectID": "lab_5/lab_5.html#aggregate-trips-to-station-hour-level-1",
     "href": "lab_5/lab_5.html#aggregate-trips-to-station-hour-level-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Aggregate Trips to Station-Hour Level",
     "text": "Aggregate Trips to Station-Hour Level\n\n\n\n\n\n\n\n\n\n\nThe histogram shows that the distribution of Trip_Count is heavily right-skewed, with most station-hour observations clustered at very low values, typically between 0 and 2 trips. As the number of trips increases, the frequency declines rapidly, with only a small number of observations exceeding 5 trips and very few reaching higher values up to around 25. This indicates that most stations experience low activity during most hours, while a small number of station-hour periods account for relatively high trip volumes."
   },
   {
     "objectID": "lab_5/lab_5.html#create-complete-panel-structure-1",
     "href": "lab_5/lab_5.html#create-complete-panel-structure-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Create Complete Panel Structure",
     "text": "Create Complete Panel Structure\n\nNot every station has trips every hour. We need a complete panel where every station-hour combination exists (even if Trip_Count = 0)."
   },
   {
     "objectID": "lab_5/lab_5.html#add-time-features",
     "href": "lab_5/lab_5.html#add-time-features",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Add Time Features",
     "text": "Add Time Features"
   },
   {
     "objectID": "lab_5/lab_5.html#join-weather-data",
     "href": "lab_5/lab_5.html#join-weather-data",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Join Weather Data",
     "text": "Join Weather Data"
   },
   {
     "objectID": "lab_5/lab_5.html#why-temporal-lags-1",
     "href": "lab_5/lab_5.html#why-temporal-lags-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Why Temporal Lags?",
     "text": "Why Temporal Lags?\n\nIf there were 15 bike trips from Station A at 8:00 AM, there will probably be ~15 trips at 9:00 AM. We can use this temporal persistence to improve predictions.\nNote: We still can’t use spatial lags in prediction. Temporal lags are different because time moves in one direction - past predicts the future, but the future does not predict the past. Spatial lags are non-directional and create circular prediction logic.\nTemporal lags: good Spatial lags: bad!\n\n-Rows after removing NA lags: 596,232 ## Visualize Lag Correlations"
   },
   {
     "objectID": "lab_5/lab_5.html#why-temporal-validation-matters-1",
     "href": "lab_5/lab_5.html#why-temporal-validation-matters-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Why Temporal Validation Matters",
     "text": "Why Temporal Validation Matters\n\nTemporal validation matters in bike-share demand forecasting because the data has a natural time order that must be respected during model training and testing. If you were to randomly split the data into training and test sets — as is common in cross-sectional machine learning problems — you would risk training the model on future data and testing it on past data, which creates an artificially optimistic and misleading picture of model performance. In this analysis, the split is made at week 49 as the threshold. All observations from weeks before 49 form the training set covering January 1 through early March, while weeks 49 and beyond form the test set covering the rest of March. This ensures the model learns patterns only from earlier time periods and is evaluated strictly on future, unseen data — exactly how it would be used in a real operational setting. An additional and important step taken here is ensuring that only common stations appearing in both the early and late periods are retained. This is done by identifying early_stations4 and late_stations4 separately, then taking their intersection via intersect() and filtering study_panel_complete4 to only those shared stations. This prevents a situation where the model is tested on stations it has never seen during training, which would conflate the challenge of temporal generalization with the separate problem of geographic generalization, making it harder to fairly evaluate predictive performance across time.\n\n-Training observations: 400,272 -Testing observations: 187,224 -Training date range: 20363 to 20424 -Testing date range: 20425 to 20453"
   },
   {
     "objectID": "lab_5/lab_5.html#model-1-baseline-time-weather-1",
     "href": "lab_5/lab_5.html#model-1-baseline-time-weather-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Model 1: Baseline (Time + Weather)",
     "text": "Model 1: Baseline (Time + Weather)\n\nThe model uses Monday as the baseline. Each coefficient represents the difference in expected trips per station-hour compared to Monday\nWeekday Pattern (Tue–Fri): - All weekdays have positive coefficients (0.038 to 0.092) - Friday has the highest weekday effect (+0.092) - Tuesday (+0.049), Wednesday (+0.038), Thursday (+0.048) are moderate - Weekdays likely benefit from commuting-driven demand, strongest toward end of week\nWeekend Pattern (Sat–Sun): - Saturday is slightly positive (+0.019) - Sunday is negative (-0.068) - This means: * Saturday ≈ similar to Monday (slight increase) * Sunday has fewer trips per station-hour than Monday\nHourly Interpretation: Hour Coefficient Interpretation 1–5 low Overnight low activity, bottoming at 3 AM (-0.100), slight recovery by 5 AM 6–9 rising Morning surge → peak at 8 AM (+0.879), then slight drop 10–15 moderate Midday stable usage with gradual afternoon rise 16–18 high Strong evening surge → peak at 5 PM (+1.137), then decline 19–23 declining Gradual decrease to late-night levels\nWeather Effects: - Temperature: +0.0127 → higher temperatures increase trips - Precipitation: -2.8117 → strong negative impact (rain sharply reduces trips)\n\n\nIn my model, I evaluated performance using both MAE and RMSE for the training and test datasets. The MAE values (≈0.72 for training and ≈0.51 for testing) indicate that, on average, my model’s predictions differ from the actual trip counts by about half to three-quarters of a unit, which suggests reasonably small and acceptable errors. The RMSE values (≈1.13 for training and ≈0.75 for testing) are slightly higher than the MAE, which is expected because RMSE penalizes larger errors more heavily; this tells me that while most predictions are close, there are a few larger errors influencing the model. Interestingly, both MAE and RMSE are lower on the test data than on the training data, which suggests that the model is not overfitting and generalizes fairly well to new data. Overall, these results indicate that my model performs reasonably well with moderate accuracy, though there is still room for improvement, especially in reducing larger prediction errors reflected in the RMSE."
   },
   {
     "objectID": "lab_5/lab_5.html#model-2-add-temporal-lags-1",
     "href": "lab_5/lab_5.html#model-2-add-temporal-lags-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Model 2: Add Temporal Lags",
     "text": "Model 2: Add Temporal Lags\nQuestion: Did adding lags improve R²? Why or why not?\n\nYes, adding lag variables significantly improved the model’s R². In the first model, the Multiple R² was 0.1081, meaning the model explained about 10.8% of the variation in trip counts. After adding lag variables (lag1Hour, lag3Hours, and lag1day), the Multiple R² increased to 0.3294, indicating that the improved model explains about 32.9% of the variation. This substantial increase suggests that past trip counts are strong predictors of current trip demand. Trip counts tend to follow temporal patterns, where demand in the current hour is influenced by demand in previous hours and the same time on the previous day. By including lag variables, the model captures these time-dependent patterns, reducing unexplained variation and improving overall predictive performance."
   },
   {
     "objectID": "lab_5/lab_5.html#model-3-add-demographics-1",
     "href": "lab_5/lab_5.html#model-3-add-demographics-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Model 3: Add Demographics",
     "text": "Model 3: Add Demographics\n\nYes, adding the demographic variables slightly improved the model’s R² compared to the previous model with lag variables. In the second model, the Multiple R² was 0.3294, while after adding Median Income, Percent Taking Transit, and Percent White, the Multiple R² increased to 0.3336. Although this increase is relatively small, it indicates that demographic and socioeconomic factors provide additional explanatory power for trip counts. The improvement is modest because most of the predictive power was already captured by the lag variables, which strongly account for temporal patterns in trip demand. However, including demographic variables helps explain spatial and socioeconomic differences in travel behavior, leading to a slight reduction in residual error and a marginal improvement in overall model performance."
   },
   {
     "objectID": "lab_5/lab_5.html#model-4-add-station-fixed-effects-1",
     "href": "lab_5/lab_5.html#model-4-add-station-fixed-effects-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Model 4: Add Station Fixed Effects",
     "text": "Model 4: Add Station Fixed Effects\n\nWhat do station fixed effects capture? Baseline differences in demand across stations (some are just busier than others!). Adding station fixed effects further improved the model performance. In the previous model, the Multiple R² was 0.3336, while after including station fixed effects, the R² increased to 0.3582 and the adjusted R² increased to 0.3577. This improvement indicates that accounting for individual station differences helps explain additional variation in trip counts. Station fixed effects capture baseline differences in demand across stations, as some stations are naturally busier due to factors such as location, nearby businesses, residential density, or access to public transit. By controlling for these station-specific characteristics, the model better accounts for variation in trip demand, leading to improved overall explanatory power and model fit."
   },
   {
     "objectID": "lab_5/lab_5.html#model-5-add-rush-hour-interaction-1",
     "href": "lab_5/lab_5.html#model-5-add-rush-hour-interaction-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Model 5: Add Rush Hour Interaction",
     "text": "Model 5: Add Rush Hour Interaction\n\nAdding rush hour, month fixed effects, and the interaction between rush hour and weekends slightly improved the model compared to Model 4. The R² increased from 0.3582 in Model 4 to 0.3612 in Model 5, and the adjusted R² increased from 0.3577 to 0.3608. This improvement suggests that accounting for rush hour patterns and seasonal differences helps explain additional variation in trip counts. Rush hour variables capture periods of high commuting demand, typically during morning and evening work hours, while the interaction between rush hour and weekends allows the model to account for different travel patterns on weekends compared to weekdays. Overall, rush hour effects capture systematic increases in demand during peak commuting times, which vary depending on whether it is a weekday or weekend, leading to improved model performance."
   },
   {
     "objectID": "lab_5/lab_5.html#calculate-predictions-and-mae-1",
     "href": "lab_5/lab_5.html#calculate-predictions-and-mae-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Calculate Predictions and MAE",
     "text": "Calculate Predictions and MAE\n\n\n\nMean Absolute Error by Model (Test Set)\n\n\nModel\nMAE (trips)\n\n\n\n\n1. Time + Weather\n0.46\n\n\n2. + Temporal Lags\n0.41\n\n\n3. + Demographics\n0.42\n\n\n4. + Station FE\n0.44\n\n\n5. + Rush Hour Interaction\n0.45\n\n\n\n\n\n\nThe MAE values show how prediction accuracy changes across the five models. Model 1 (Time + Weather) has the highest MAE of 0.51, indicating the lowest predictive accuracy. Adding temporal lag variables in Model 2 significantly improves performance, reducing MAE to 0.41, making it the best-performing model. Model 3, which adds demographic variables, slightly increases MAE to 0.42, suggesting these variables add limited predictive value. Similarly, Model 4 (Station Fixed Effects) and Model 5 (Rush Hour Interaction) further increase MAE to 0.44 and 0.45, respectively, indicating that although these models improved R², they did not improve out-of-sample prediction accuracy. Overall, Model 2 performs best, suggesting that temporal patterns captured by lag variables are the most important predictors of trip demand."
   },
   {
     "objectID": "lab_5/lab_5.html#visualize-model-comparison-1",
     "href": "lab_5/lab_5.html#visualize-model-comparison-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Visualize Model Comparison",
     "text": "Visualize Model Comparison\n\n\n\n\n\n\n\n\n\n\nQuestion: Which features gave us the biggest improvement? -Temporal lag features contributed the most predictive power, significantly reducing error. -The other added feature groups did not improve performance and in fact slightly increased MAE, suggesting they added noise or redundant information rather than useful signal.\n\nNow we are going to Compare results of Q4  to Q1 2025:\n-How do MAE values compare? Why might they differ?\n\nOverall, the MAE values in Quarter 4 (Q4) are consistently lower than those in Quarter 1 (Q1) across all models, indicating that the models perform better in Q4. In Q1, MAE decreases from 0.62 in the simplest model to about 0.53 in the more complex specifications. In contrast, Q4 starts at a lower MAE of 0.51 and improves further to around 0.41–0.45. The most noticeable improvement is seen in the model that adds temporal lags, where error drops significantly in Q4 compared to Q1. This suggests that the underlying system in Q4 is easier to predict and that historical patterns are more stable and informative. The differences between quarters are likely driven by changes in external conditions such as seasonality, weather, and travel behavior, which affect how predictable trip counts are.\n\n-Are temporal patterns different (e.g., summer vs. winter)?\n\nThe temporal patterns also appear to differ between the two quarters. Q1 shows higher error overall, which suggests more variability and less stable demand patterns, likely due to more disruptive conditions such as colder weather or irregular travel behavior. In contrast, Q4 shows much lower errors, which indicates more consistent and predictable temporal trends. This could reflect more stable weather conditions and more regular commuting or travel patterns during that period. Additionally, the stronger performance of lag variables in Q4 suggests that recent past demand is more reliable for predicting current demand in that quarter compared to Q1.\n\n\nWhich features are most important in your quarter?\n\n\nIn terms of feature importance, temporal lags emerge as the most important predictor in both quarters, but especially in Q4 where they lead to the largest reduction in MAE. Weather and time-based features form a strong baseline in both cases. However, in Q1, additional features such as demographics, station fixed effects, and rush hour interactions provide small incremental improvements, suggesting that more structural information is needed to capture variability. In Q4, these additional features contribute little or even slightly worsen performance, indicating that the model already captures most of the predictive signal through time and lagged demand alone. Overall, temporal dynamics are the dominant driver of predictive accuracy in both quarters, with Q4 showing more reliance on simple historical patterns due to its greater stability."
   },
   {
     "objectID": "lab_5/lab_5.html#observed-vs.-predicted-1",
     "href": "lab_5/lab_5.html#observed-vs.-predicted-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Observed vs. Predicted",
     "text": "Observed vs. Predicted\nLet’s use our best model (Model 2) for error analysis.\n\n\n\n\n\n\n\n\n\nQuestion: Where is the model performing well? Where is it struggling?\n\nThe model performs best during the PM Rush period, where the predicted values align more closely with the ideal red line and the spread of points follows the expected trend, indicating it captures both the direction and magnitude of demand reasonably well. It shows moderate performance during Mid-Day, where it generally tracks the upward trend but still deviates from perfect predictions. However, the model struggles during AM Rush and Evening periods, where the fitted (green) line is noticeably flatter than the ideal line, suggesting it underestimates higher trip counts and slightly overestimates lower ones. The weakest performance appears during Overnight periods, where predictions are compressed into a narrow range and fail to reflect the variability in observed trips. Overall, the model exhibits a consistent tendency to regress toward the mean—performing better in stable, high-demand periods and struggling in low or highly variable conditions."
   },
   {
     "objectID": "lab_5/lab_5.html#spatial-error-patterns-1",
     "href": "lab_5/lab_5.html#spatial-error-patterns-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Spatial Error Patterns",
     "text": "Spatial Error Patterns\n\nAre prediction errors clustered in certain parts of Philadelphia? Yes, prediction errors are clearly clustered in specific parts of Philadelphia rather than being randomly distributed. The highest errors (shown in darker orange to purple) are concentrated in the central and southern areas of the city, while the outer neighborhoods—particularly toward the north and northeast—tend to have lower errors (lighter yellow tones).\nWhen compared with the average demand map, these high-error areas generally overlap with zones of higher bike usage. This suggests the model struggles more in dense, high-activity regions where demand is likely more complex and variable. In contrast, areas with lower demand show smaller, more consistent errors, indicating the model handles simpler, low-activity patterns more effectively.\n\n\n\n\n\n\n\n\n\n\n\nQuestion: Do you see spatial clustering of errors? What neighborhoods have high errors?\n\n\nYes, there is clear spatial clustering of prediction errors. The errors are not randomly spread across Philadelphia but are concentrated in specific areas, particularly in the central and southern parts of the city. These regions show higher error values (orange to purple), indicating that the model struggles more there. In contrast, the northern and outer areas exhibit lower errors (lighter yellow), suggesting better model performance.\nComparing this with the average demand map, the high-error clusters largely overlap with areas of higher bike demand. This implies that neighborhoods with more intense and variable usage—likely around Center City and nearby dense urban areas—experience greater prediction inaccuracies. Meanwhile, lower-demand neighborhoods farther from the city center tend to have smaller errors, indicating the model performs more consistently in those regions.\n\n\nIdentify neighborhoods with high errors?\n\nHypothesize why (missing features? different demand patterns?)\n\n\nThe map shows clear spatial clustering of prediction errors, with the highest errors concentrated in central and southern parts of Philadelphia. In particular, areas that appear to correspond to dense, high-activity neighborhoods—such as Center City and nearby surrounding districts—exhibit the darkest colors, indicating larger MAE values. These same areas also show relatively higher average demand in the adjacent map, reinforcing that the model struggles most in busy, high-usage zones. In contrast, neighborhoods farther from the urban core, especially toward the north and northeast, display lighter colors and thus lower prediction errors.\nNeighborhoods with high errors are therefore primarily those in the urban core and nearby dense corridors. A plausible explanation is that these areas have more complex and dynamic demand patterns that the model is not fully capturing. For example, fluctuations driven by commuting, tourism, events, weather sensitivity, or proximity to transit hubs can introduce variability that simpler features may miss. Additionally, the model may lack important predictors such as land use characteristics, special event data, or real-time factors, leading to underfitting in these high-demand regions. In contrast, lower-demand neighborhoods likely have more stable and predictable usage patterns, making them easier for the model to estimate accurately."
   },
   {
     "objectID": "lab_5/lab_5.html#temporal-error-patterns-1",
     "href": "lab_5/lab_5.html#temporal-error-patterns-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Temporal Error Patterns",
     "text": "Temporal Error Patterns\n\nWhen are we most wrong? The model’s errors vary noticeably by time of day, with the largest errors occurring during PM Rush, followed by AM Rush and Mid-Day periods. PM Rush shows the highest mean absolute error for both weekdays and weekends, indicating that the model struggles most during peak evening demand when trip activity is likely highest and most variable. AM Rush also exhibits relatively high errors, especially on weekdays, suggesting difficulty in capturing sharp morning commuting patterns. Mid-Day errors are moderate, reflecting somewhat better but still imperfect performance during steady daytime usage.\nIn contrast, the model performs best during Overnight and Evening periods, where errors are lowest. These time periods likely have more stable and predictable demand, making them easier to model. Additionally, weekday errors are generally higher than weekend errors across most time periods (except Overnight), implying that weekday travel patterns—possibly driven by structured commuting behavior—are more complex and harder for the model to accurately capture. Overall, the model is most wrong during high-demand, peak commuting times and more accurate during low-demand, stable periods.\n\n\n\n\n\n\n\n\n\n\n\nIdentify neighborhoods with high errors?\nHypothesize why (missing features? different demand patterns?\n\n\nNeighborhoods with high errors are concentrated in the central and southern parts of Philadelphia, as seen in the earlier spatial error map. These areas—likely corresponding to dense, high-activity zones such as Center City and nearby corridors—consistently show larger prediction errors. When viewed alongside the temporal chart, this pattern becomes more meaningful: these same neighborhoods are also the ones most affected during high-error time periods like PM Rush and AM Rush, when demand spikes and becomes more variable.\nA reasonable explanation is that these neighborhoods exhibit more complex and dynamic demand patterns that the model is not fully capturing. For example, peak commuting flows, multimodal connections (e.g., near transit hubs), events, and irregular surges in activity can all introduce variability. The higher errors during rush hours suggest the model may be missing important features such as real-time congestion, transit interactions, or fine-grained temporal effects. In contrast, lower-demand neighborhoods likely have simpler, more stable usage patterns, which is why both spatially and temporally the model performs better there."
   },
   {
     "objectID": "lab_5/lab_5.html#errors-and-demographics-1",
     "href": "lab_5/lab_5.html#errors-and-demographics-1",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Errors and Demographics",
     "text": "Errors and Demographics\n\nAre prediction errors related to neighborhood characteristics? The plots indicate that prediction errors are indeed related to neighborhood characteristics, though the relationships are not very strong. Errors tend to increase slightly with median income, suggesting that higher-income neighborhoods experience somewhat larger inaccuracies, possibly due to more variable or less predictable travel behavior such as discretionary or non-commuting trips. At the same time, errors decrease as transit usage increases, implying that areas with higher reliance on public transit have more structured and consistent demand patterns that the model can capture more effectively. Additionally, there is a mild positive relationship between errors and the percentage of white residents, although this trend is relatively weak and likely reflects underlying factors like income, land use, or travel patterns rather than race itself. Overall, the model appears to perform better in neighborhoods with stable, transit-oriented demand and struggles more in areas with more complex and variable usage patterns.\n\n\n\n\n\n\n\n\n\n\n\nCritical Question: Are prediction errors systematically higher in certain demographic groups? What are the equity implications?\n\n\nThe plots suggest that certain communities are systematically harder to predict, particularly higher-income neighborhoods and those with lower transit usage, where errors tend to be larger. These areas likely have more variable and less routine travel behavior—such as flexible work schedules, leisure trips, or multimodal choices—that the model does not fully capture. In contrast, neighborhoods with higher transit usage show lower errors, indicating more predictable, structured demand patterns. There is also a slight increase in errors with higher percentages of white residents, though this relationship is weaker and likely reflects correlated factors like income and urban form rather than race directly.\n\n\nFrom an equity perspective, these patterns matter because uneven model performance can lead to unequal service quality. If the model is used to allocate bikes or plan infrastructure, higher errors in certain neighborhoods could result in over- or under-supply, potentially disadvantaging some communities. For example, if lower-income or transit-dependent areas were to have higher errors, it could reinforce existing inequities in access to transportation. Even though the current pattern suggests better performance in transit-heavy areas, it is still important to monitor and address these disparities to ensure that model-driven decisions do not unintentionally favor certain neighborhoods over others."
   },
   {
     "objectID": "lab_5/lab_5.html#part-3-feature-engineering-model-improvement",
     "href": "lab_5/lab_5.html#part-3-feature-engineering-model-improvement",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Part 3: Feature Engineering & model improvement",
     "text": "Part 3: Feature Engineering & model improvement\nImplementation:\n\nAdded features to the best model\n\n\nI added three new features to improve the model. First, I included lag168 (same hour last week) to capture weekly demand patterns, since bike usage often follows consistent weekly cycles (e.g., Monday morning commute patterns repeating each week). Second, I created a rolling7day average demand variable, which captures longer-term trends and smooths short-term fluctuations, helping the model better adjust to sustained increases or decreases in usage. Third, I added a perfect_weather indicator, defined as temperatures between 60–75°F with no precipitation, to capture nonlinear weather effects that are not fully explained by temperature and precipitation alone.\n\n\nCompare MAE before and after To evaluate performance, I compared the Mean Absolute Error (MAE) of the new model (Model 6) with the previous best model (Model 2). Model 2 had an MAE of approximately 0.41, while Model 6 produced a slightly lower MAE 0.39 based on the computed result), indicating an improvement in predictive accuracy. The Poisson model was also tested, and its MAE was comparable, though not significantly better than the linear model.\n&lt;/div&gt;\n\nExplain why you chose these features These features were chosen based on earlier error analysis. The model previously struggled during peak demand periods (AM/PM rush) and in high-demand areas, suggesting missing temporal structure and nonlinear effects. The lag168 feature captures weekly repetition in commuting behavior, while the rolling7day feature accounts for broader demand trends beyond short-term lags. The perfect_weather variable helps identify conditions where ridership spikes due to favorable weather, which the original model could not fully capture.\n&lt;/div&gt;\n\nDid they improve predictions? Where? Overall, these new features improved predictions, particularly during rush hours and high-demand periods, where the model previously underestimated trip counts. By incorporating both longer-term temporal patterns and nonlinear weather effects, the model becomes better at capturing variability in demand, leading to more accurate predictions in the most challenging scenarios.\n&lt;/div&gt;\nTry a poisson model for count data\n\nDoes this improve model fit? I also tested a Poisson regression model, which is more appropriate for count data like bike trips because it accounts for non-negative integer values and the distribution of counts. However, after evaluating its performance using MAE, the results were very similar to the linear model, with no significant improvement in predictive accuracy. While the Poisson model may better capture very low trip counts, particularly during overnight periods, it did not meaningfully reduce overall errors. This suggests that feature engineering—such as adding lag168, rolling averages, and weather indicators—had a much larger impact on improving the model than simply changing the model type, and overall the Poisson model did not substantially improve model fit in this case.\n&lt;/div&gt;\n\nPart 4: Critical Reflection\n\n1. Operational implications:\nIs your final MAE “good enough” for Indego to use?\n\n\nThe final MAE of around 0.4–0.5 trips per station-hour is reasonably low, especially given that most station-hour observations have very small trip counts. This means the model is generally close to actual demand and performs well on average. However, “good enough” depends on the operational context—while small errors may be acceptable in low-demand stations, even a 1–2 trip error at high-demand stations during peak hours could lead to stockouts or congestion. Therefore, the model is useful but not sufficient on its own for precise operational decisions.\n\nWhen do prediction errors cause problems for rebalancing?\n\n\nPrediction errors are most problematic during peak demand periods, particularly AM and PM rush hours, when demand is both high and time-sensitive. Underprediction during these periods can result in stations running out of bikes, while overprediction can lead to unnecessary rebalancing efforts and inefficient use of trucks and staff. Errors in high-demand areas, such as central urban locations, are especially costly because they affect more users and can quickly cascade into system-wide imbalances.\n\nWould you recommend deploying this system? Under what conditions?\n\n\nI would recommend deploying this system as a decision-support tool rather than a fully automated solution. It can provide valuable forecasts to guide rebalancing strategies, especially when combined with human judgment and operational experience. Deployment would be most appropriate if the model is updated frequently, monitored for performance, and supplemented with real-time data (e.g., current bike availability). It should also be used alongside conservative planning strategies, such as maintaining buffer inventory at high-demand stations.\n\n\n\n\n2. Equity considerations:\nDo prediction errors disproportionately affect certain neighborhoods?\n\n\nYes, the analysis suggests that prediction errors are higher in central, high-demand neighborhoods, which are often more economically active and densely populated. Errors also show some relationship with demographic variables such as income and transit usage. While the patterns are not extremely strong, they indicate that the model performs differently across neighborhoods, which raises concerns about uneven service quality.\n\nCould this system worsen existing disparities in bike access?\n\n\nPotentially, yes. If the model systematically underperforms in certain neighborhoods and is used to guide resource allocation, it could lead to under-supply in already underserved areas or over-prioritization of well-performing, high-demand zones. This could reinforce existing disparities in transportation access, particularly if lower-income or transit-dependent communities receive less reliable service.\n\nWhat safeguards would you recommend?\n\n\nTo address these concerns, I would recommend implementing equity-focused safeguards such as monitoring model errors by neighborhood, setting minimum service thresholds across all areas, and incorporating equity weights into rebalancing decisions. Additionally, periodic audits should be conducted to ensure that the system does not disproportionately disadvantage specific communities. Including more diverse data sources that capture local context may also help reduce bias in predictions.\n\n\n\n\n3. Model limitations:\nWhat patterns is your model missing?\n\n\nThe model does not capture sudden or irregular demand shocks such as special events, holidays, service disruptions, or changes in transit conditions. It also lacks detailed spatial context, such as land use, proximity to transit hubs, or real-time system status (e.g., current bike availability or dock capacity). These missing factors likely contribute to higher errors in busy and dynamic areas.\n\nWhat assumptions might not hold in real deployment?\n\n\nThe model assumes that historical patterns will continue into the future and that relationships between variables remain stable over time. In reality, demand can shift due to weather anomalies, policy changes, infrastructure updates, or behavioral changes. It also assumes consistent data quality and availability, which may not hold in real-time operations.\n\nHow would you improve this with more time/data?\n\n\nWith more time and data, I would incorporate additional features such as event data, real-time station status, and finer-grained weather variables. I would also explore more advanced modeling approaches, such as machine learning models (e.g., random forests or gradient boosting) and count-based models better suited for skewed data. Additionally, integrating spatial relationships between stations and using longer time series data could further improve predictive performance and robustness.\n\n\n\n\n\n\n\n::::::::::::::::::::::::::::::::::::::::"
   },
   {
     "objectID": "lab_5/lab_5.html#part-4-critical-reflection",
     "href": "lab_5/lab_5.html#part-4-critical-reflection",
-    "title": "Bikeshare_SpaceTime_Prediction",
+    "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
     "section": "Part 4: Critical Reflection",
     "text": "Part 4: Critical Reflection\n\n1. Operational implications:\nIs your final MAE “good enough” for Indego to use?\n\n\nThe final MAE of around 0.4–0.5 trips per station-hour is reasonably low, especially given that most station-hour observations have very small trip counts. This means the model is generally close to actual demand and performs well on average. However, “good enough” depends on the operational context—while small errors may be acceptable in low-demand stations, even a 1–2 trip error at high-demand stations during peak hours could lead to stockouts or congestion. Therefore, the model is useful but not sufficient on its own for precise operational decisions.\n\nWhen do prediction errors cause problems for rebalancing?\n\n\nPrediction errors are most problematic during peak demand periods, particularly AM and PM rush hours, when demand is both high and time-sensitive. Underprediction during these periods can result in stations running out of bikes, while overprediction can lead to unnecessary rebalancing efforts and inefficient use of trucks and staff. Errors in high-demand areas, such as central urban locations, are especially costly because they affect more users and can quickly cascade into system-wide imbalances.\n\nWould you recommend deploying this system? Under what conditions?\n\n\nI would recommend deploying this system as a decision-support tool rather than a fully automated solution. It can provide valuable forecasts to guide rebalancing strategies, especially when combined with human judgment and operational experience. Deployment would be most appropriate if the model is updated frequently, monitored for performance, and supplemented with real-time data (e.g., current bike availability). It should also be used alongside conservative planning strategies, such as maintaining buffer inventory at high-demand stations.\n\n\n\n\n2. Equity considerations:\nDo prediction errors disproportionately affect certain neighborhoods?\n\n\nYes, the analysis suggests that prediction errors are higher in central, high-demand neighborhoods, which are often more economically active and densely populated. Errors also show some relationship with demographic variables such as income and transit usage. While the patterns are not extremely strong, they indicate that the model performs differently across neighborhoods, which raises concerns about uneven service quality.\n\nCould this system worsen existing disparities in bike access?\n\n\nPotentially, yes. If the model systematically underperforms in certain neighborhoods and is used to guide resource allocation, it could lead to under-supply in already underserved areas or over-prioritization of well-performing, high-demand zones. This could reinforce existing disparities in transportation access, particularly if lower-income or transit-dependent communities receive less reliable service.\n\nWhat safeguards would you recommend?\n\n\nTo address these concerns, I would recommend implementing equity-focused safeguards such as monitoring model errors by neighborhood, setting minimum service thresholds across all areas, and incorporating equity weights into rebalancing decisions. Additionally, periodic audits should be conducted to ensure that the system does not disproportionately disadvantage specific communities. Including more diverse data sources that capture local context may also help reduce bias in predictions.\n\n\n\n\n3. Model limitations:\nWhat patterns is your model missing?\n\n\nThe model does not capture sudden or irregular demand shocks such as special events, holidays, service disruptions, or changes in transit conditions. It also lacks detailed spatial context, such as land use, proximity to transit hubs, or real-time system status (e.g., current bike availability or dock capacity). These missing factors likely contribute to higher errors in busy and dynamic areas.\n\nWhat assumptions might not hold in real deployment?\n\n\nThe model assumes that historical patterns will continue into the future and that relationships between variables remain stable over time. In reality, demand can shift due to weather anomalies, policy changes, infrastructure updates, or behavioral changes. It also assumes consistent data quality and availability, which may not hold in real-time operations.\n\nHow would you improve this with more time/data?\n\n\nWith more time and data, I would incorporate additional features such as event data, real-time station status, and finer-grained weather variables. I would also explore more advanced modeling approaches, such as machine learning models (e.g., random forests or gradient boosting) and count-based models better suited for skewed data. Additionally, integrating spatial relationships between stations and using longer time series data could further improve predictive performance and robustness."
   },
