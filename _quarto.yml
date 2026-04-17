@@ -6,7 +6,7 @@ website:
   title: "UMAIR BIN SAADD - MUSA 5080 Portfolio"
   navbar:
     left:
-      - href: https://umairbinsaad.github.io/Public-Policy-Analytics/lab_4/lab_4.html
+      - href: https://umairbinsaad.github.io/Public-Policy-Analytics/lab_5/lab_5.html
         text: Home
       - text: Labs
         menu:
