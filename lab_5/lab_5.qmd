@@ -115,9 +115,6 @@ indego <- read_csv(here("D:/Ph.D/US Pakistan Knowledge Corridore/Upenn/Subjects/
 
 ```
 
-::: {style="text-align: justify;"}
-Look at the data. What do you suspect the coordinate system is? What do you notice about the date and time structure?
-:::
 
 ## Examine the Data Structure
 
