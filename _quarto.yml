@@ -21,7 +21,7 @@ website:
           - href: https://umairbinsaad.github.io/Public-Policy-Analytics/lab_4/lab_4.html
             text: "Lab 4: Spatial Predictive Analysis"
           - href: https://umairbinsaad.github.io/Public-Policy-Analytics/lab_5/lab_5.html
-            text: "Lab 4: Bikeshare_SpaceTime_Prediction"
+            text: "Lab 5: Bikeshare_SpaceTime_Prediction"
 format:
   html:
     theme: cosmo
