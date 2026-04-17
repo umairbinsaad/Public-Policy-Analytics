@@ -5,8 +5,8 @@ author: "Umair Bin Saad"
 date: today
 format:
   html:
-    code-fold: show
-    code-tools: true
+    code-fold: false
+    code-tools: false
     toc: true
     toc-depth: 3
     toc-location: left
