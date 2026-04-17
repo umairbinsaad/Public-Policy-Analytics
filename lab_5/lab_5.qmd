@@ -1,5 +1,5 @@
 ---
-title: "Bikeshare_SpaceTime_Prediction"
+title: "Lab 4: Bikeshare_SpaceTime_Prediction"
 subtitle: "CPLN 5080 - Spring 2026"
 author: "Umair Bin Saad"
 date: today
