@@ -1,0 +1,333 @@
+#Clearing previous data
+rm(list=ls())
+library(tidyverse)
+library(sf)
+library(tidycensus)
+library(tigris)
+library(lubridate)
+library(janitor)
+library(knitr)
+library(ggplot2)
+options(tigris_use_cache = TRUE)
+bus_rider <- st_read("Data/Bus_Ridership_by_Census_Tract.csv") %>%
+clean_names()
+glimpse (bus_rider)
+View(bus_rider)
+bus_rider_philly <- bus_rider %>%
+filter(county_name == "Philadelphia County")
+View(bus_rider_philly)
+View(bus_rider_philly)
+bus_rider_philly <- bus_rider %>%
+filter(county_name == "Philadelphia County",
+season >= "Fall 2022")
+View(bus_rider_philly)
+bus_rider_2022 <- st_read("Data/Fall_2022_Stop_Summary_(Bus).csv") %>%
+clean_names()
+bus_rider_2023 <- st_read("Data/Fall_2023_Stop_Summary_(Bus).csv") %>%
+clean_names()
+View(bus_rider_2022)
+View(bus_rider_2023)
+bus_rider_2023 <- st_read("Data/Fall_2023_Stop_Summary_(Bus).csv") %>%
+clean_names() %>%
+select(-source)
+bus_rider_2022 <- st_read("Data/Fall_2022_Stop_Summary_(Bus).csv") %>%
+clean_names() %>%
+select(-source)
+bus_rider_2023 <- st_read("Data/Fall_2023_Stop_Summary_(Bus).csv") %>%
+clean_names()
+View(bus_rider_2022)
+bus_rider_2024 <- st_read("Data/Fall_2024_Stop_Summary_(Bus).csv") %>%
+clean_names()
+bus_rider_2025 <- st_read("Data/Fall_2025_Stop_Summary_(Bus).csv") %>%
+clean_names()
+View(bus_rider_2024)
+View(bus_rider_2025)
+View(bus_rider_2023)
+View(bus_rider_2022)
+bus_rider_2022 <- st_read("Data/Fall_2022_Stop_Summary_(Bus).csv") %>%
+clean_names() %>%
+select(-source, gis_db_id)
+View(bus_rider_2023)
+bus_rider_2023 <- st_read("Data/Fall_2023_Stop_Summary_(Bus).csv") %>%
+clean_names() %>%
+select(gisdbid)
+View(bus_rider_2022)
+bus_rider_2022 <- st_read("Data/Fall_2022_Stop_Summary_(Bus).csv") %>%
+clean_names() %>%
+select(-source,-gis_db_id)
+bus_rider_2023 <- st_read("Data/Fall_2023_Stop_Summary_(Bus).csv") %>%
+clean_names() %>%
+select(-gisdbid)
+View(bus_rider_2023)
+View(bus_rider_2024)
+View(bus_rider_2025)
+bus_rider_2022 <- st_read("Data/Fall_2022_Stop_Summary_(Bus).csv") %>%
+clean_names() %>%
+select(-source,-gis_db_id) %>%
+mutate(colnames(x, y, fid, mode, route, direction, route_1, stop, lat, lon,
+season, week_on, week_off, sat_on, sat_off, sun_on, sun_off))
+colnames(bus_rider_2022) <- c ("x", "y", "fid", "mode", "route", "direction", "route_1", "stop",
+"lat", "lon", "season", "week_on", "week_off", "sat_on", "sat_off",
+"sun_on", "sun_off")
+View(bus_rider_2022)
+bus_rider_2022 <- st_read("Data/Fall_2022_Stop_Summary_(Bus).csv") %>%
+clean_names() %>%
+select(-source,-gis_db_id)
+colnames(bus_rider_2022) <- c ("x", "y", "fid", "mode", "route", "direction", "route_1", "stop",
+"lat", "lon", "season", "week_on", "week_off", "sat_on", "sat_off",
+"sun_on", "sun_off")
+bus_rider_2023 <- st_read("Data/Fall_2023_Stop_Summary_(Bus).csv") %>%
+clean_names() %>%
+select(-gisdbid)
+colnames(bus_rider_2023) <- c ("x", "y", "fid", "mode", "route", "direction", "route_1", "stop",
+"lat", "lon", "season", "week_on", "week_off", "sat_on", "sat_off",
+"sun_on", "sun_off")
+bus_rider_2024 <- st_read("Data/Fall_2024_Stop_Summary_(Bus).csv") %>%
+clean_names()
+colnames(bus_rider_2024) <- c ("x", "y", "fid", "mode", "route", "direction", "route_1", "stop",
+"lat", "lon", "season", "week_on", "week_off", "sat_on", "sat_off",
+"sun_on", "sun_off")
+bus_rider_2025 <- st_read("Data/Fall_2025_Stop_Summary_(Bus).csv") %>%
+clean_names()
+colnames(bus_rider_2025) <- c ("x", "y", "fid", "mode", "route", "direction", "route_1", "stop",
+"lat", "lon", "season", "week_on", "week_off", "sat_on", "sat_off",
+"sun_on", "sun_off")
+bus_rider <- bind_rows(bus_rider_2022, bus_rider_2023, bus_rider_2024, bus_rider_2025)
+View(bus_rider)
+View(bus_rider_2025)
+View(bus_rider)
+# Load Philadelphia boundary
+PhillyBoundary <-
+st_read("Data/Neighborhoods/Neighborhoods.shp") %>%
+st_transform(crs = "ESRI:102271")
+# Convert to spatial (sf object)
+bus_rider_sf <- bus_rider %>%
+st_as_sf(coords = c("x", "y"), crs = 4326)  # use correct CRS if different
+# Load Philadelphia boundary
+PhillyBoundary <-
+st_read("Data/Neighborhoods/Neighborhoods.shp") %>%
+st_transform(crs = 4326)
+library(sf)
+library(dplyr)
+library(janitor)
+# Convert to spatial (sf object)
+bus_rider_sf <- bus_rider %>%
+st_as_sf(coords = c("x", "y"), crs = 4326)  # use correct CRS if different
+# Write to GeoJSON
+st_write(bus_rider_sf, "bus_rider.geojson", driver = "GeoJSON", delete_dsn = TRUE)
+#Mapping the bus stops
+p1 <- ggplot() +
+geom_sf(data = PhillyBoundary, fill = "gray95", color = "gray60") +
+geom_sf(data = bus_rider_sf, color = "#d62828", size = 0.1, alpha = 0.4) +
+labs(
+title = "Burglary Locations",
+subtitle = paste0("Chicago 2017, n = ", nrow(burglaries))
+)
+#Mapping the bus stops
+p1 <- ggplot() +
+geom_sf(data = PhillyBoundary, fill = "gray95", color = "gray60") +
+geom_sf(data = bus_rider_sf, color = "#d62828", size = 0.1, alpha = 0.4) +
+labs(
+title = "Bus Stop Locations Locations",
+subtitle = paste0("Bus Stops in Philly 2025, n = ", nrow(bus_rider))
+)
+#Mapping the bus stops
+p1 <- ggplot() +
+geom_sf(data = PhillyBoundary, fill = "gray95", color = "gray60") +
+geom_sf(data = bus_rider_sf, color = "#d62828", size = 0.1, alpha = 0.4) +
+labs(
+title = "Bus Stop Locations Locations",
+subtitle = paste0("Bus Stops in Philly 2025, n = ", nrow(bus_rider))
+)
+p1
+# Load Philadelphia boundary
+PhillyBoundary <-
+st_read("Data/Neighborhoods/Neighborhoods.shp") %>%
+st_transform(crs = "ESRI:102271")
+# Convert to spatial (sf object)
+bus_rider_sf <- bus_rider %>%
+st_as_sf(coords = c("x", "y"), crs = 4326)  # use correct CRS if different
+# Write to GeoJSON
+st_write(bus_rider_sf, "bus_rider.geojson", driver = "GeoJSON", delete_dsn = TRUE)
+p1
+# Convert to spatial (sf object)
+bus_rider_sf <- bus_rider %>%
+st_as_sf(coords = c("x", "y"), crs = "ESRI:102271")  # use correct CRS if different
+# Write to GeoJSON
+st_write(bus_rider_sf, "bus_rider.geojson", driver = "GeoJSON", delete_dsn = TRUE)
+p1
+View(bus_rider)
+#Aggregating Data to each bus stop
+bus_rider_stops <- bus_rider %>%
+group_by(route_1)
+# Convert to spatial (sf object)
+bus_rider_sf <- bus_rider_stops %>%
+st_as_sf(coords = c("x", "y"), crs = "ESRI:102271")  # use correct CRS if different
+# Write to GeoJSON
+st_write(bus_rider_sf, "bus_rider.geojson", driver = "GeoJSON", delete_dsn = TRUE)
+#Mapping the bus stops
+p1 <- ggplot() +
+geom_sf(data = PhillyBoundary, fill = "gray95", color = "gray60") +
+geom_sf(data = bus_rider_sf, color = "#d62828", size = 0.1, alpha = 0.4) +
+labs(
+title = "Bus Stop Locations Locations",
+subtitle = paste0("Bus Stops in Philly 2025, n = ", nrow(bus_rider))
+)
+p1
+# Load Philadelphia boundary
+PhillyBoundary <-
+st_read("Data/Neighborhoods/Neighborhoods.shp") %>%
+st_transform(crs = "2272")
+# Load Philadelphia boundary
+PhillyBoundary <-
+st_read("Data/Neighborhoods/Neighborhoods.shp") %>%
+st_transform(phl, 2272)
+# Load Philadelphia boundary
+PhillyBoundary <-
+st_read("Data/Neighborhoods/Neighborhoods.shp") %>%
+st_transform(2272)
+library(sf)
+library(dplyr)
+library(janitor)
+#Aggregating Data to each bus stop
+bus_rider_stops <- bus_rider %>%
+group_by(route_1)
+# Convert to spatial (sf object)
+bus_rider_sf <- bus_rider_stops %>%
+st_as_sf(coords = c("x", "y"), crs = "2272")  # use correct CRS if different
+# Write to GeoJSON
+st_write(bus_rider_sf, "bus_rider.geojson", driver = "GeoJSON", delete_dsn = TRUE)
+#Mapping the bus stops
+p1 <- ggplot() +
+geom_sf(data = PhillyBoundary, fill = "gray95", color = "gray60") +
+geom_sf(data = bus_rider_sf, color = "#d62828", size = 0.1, alpha = 0.4) +
+labs(
+title = "Bus Stop Locations Locations",
+subtitle = paste0("Bus Stops in Philly 2025, n = ", nrow(bus_rider))
+)
+p1
+# Load Philadelphia boundary
+PhillyBoundary <-
+st_read("Data/Neighborhoods/Neighborhoods.shp") %>%
+st_set_crs(2272)
+library(sf)
+library(dplyr)
+library(janitor)
+#Aggregating Data to each bus stop
+bus_rider_stops <- bus_rider %>%
+group_by(route_1)
+# Convert to spatial (sf object)
+bus_rider_sf <- bus_rider_stops %>%
+st_as_sf(coords = c("x", "y"), crs = "2272")  # use correct CRS if different
+# Write to GeoJSON
+st_write(bus_rider_sf, "bus_rider.geojson", driver = "GeoJSON", delete_dsn = TRUE)
+#Mapping the bus stops
+p1 <- ggplot() +
+geom_sf(data = PhillyBoundary, fill = "gray95", color = "gray60") +
+geom_sf(data = bus_rider_sf, color = "#d62828", size = 0.1, alpha = 0.4) +
+labs(
+title = "Bus Stop Locations Locations",
+subtitle = paste0("Bus Stops in Philly 2025, n = ", nrow(bus_rider))
+)
+p1
+st_crs(st_read("Data/Neighborhoods/Neighborhoods.shp"))
+crs(stop)
+st_crs(stop)
+# Load Philadelphia boundary
+PhillyBoundary <-
+st_read("Data/Census_Tracts_2010-shp/57b9fc6a-ab88-44db-8773-2a46a97483252020328-1-1vm5ejc.1re.shp") %>%
+st_set_crs(2272)
+library(sf)
+library(dplyr)
+library(janitor)
+#Aggregating Data to each bus stop
+bus_rider_stops <- bus_rider %>%
+group_by(route_1)
+View(bus_rider_stops)
+# Convert to spatial (sf object)
+bus_rider_sf <- bus_rider_stops %>%
+st_as_sf(coords = c("x", "y"), crs = "2272")  # use correct CRS if different
+# Write to GeoJSON
+st_write(bus_rider_sf, "bus_rider.geojson", driver = "GeoJSON", delete_dsn = TRUE)
+p1
+p1
+#Mapping the bus stops
+p1 <- ggplot() +
+geom_sf(data = PhillyBoundary, fill = "gray95", color = "gray60") +
+geom_sf(data = bus_rider_sf, color = "#d62828", size = 0.1, alpha = 0.4) +
+labs(
+title = "Bus Stop Locations Locations",
+subtitle = paste0("Bus Stops in Philly 2025, n = ", nrow(bus_rider))
+)
+p1
+# Convert to spatial (sf object)
+bus_rider_sf <- bus_rider %>%
+st_as_sf(coords = c("x", "y"), crs = 4326) %>%
+st_transform(2272)
+# Write to GeoJSON
+st_write(
+st_transform(bus_rider_sf, 4326),
+"bus_rider.geojson",
+driver = "GeoJSON",
+delete_dsn = TRUE
+)
+# Load Philadelphia boundary
+PhillyBoundary <-
+st_read("Data/Census_Tracts_2010-shp/57b9fc6a-ab88-44db-8773-2a46a97483252020328-1-1vm5ejc.1re.shp") %>%
+st_set_crs(2272)
+library(sf)
+library(dplyr)
+library(janitor)
+#Aggregating Data to each bus stop
+bus_rider_stops <- bus_rider %>%
+group_by(route_1)
+# Convert to spatial (sf object)
+bus_rider_sf <- bus_rider %>%
+st_as_sf(coords = c("x", "y"), crs = 4326) %>%
+st_transform(2272)
+# Write to GeoJSON
+st_write(
+st_transform(bus_rider_sf, 4326),
+"bus_rider.geojson",
+driver = "GeoJSON",
+delete_dsn = TRUE
+)
+# Map
+p1 <- ggplot() +
+geom_sf(data = PhillyBoundary, fill = "gray95", color = "gray60") +
+geom_sf(data = bus_rider_sf, color = "#d62828", size = 0.1, alpha = 0.4) +
+labs(
+title = "Bus Stop Locations",
+subtitle = paste0("Bus Stops in Philly, n = ", nrow(bus_rider))
+)
+p1
+View(bus_rider_sf)
+bus_rider <- bus_rider %>%
+mutate(
+x = as.numeric(x),
+y = as.numeric(y)
+) %>%
+filter(!is.na(x), !is.na(y))
+#Aggregating Data to each bus stop
+bus_rider_stops <- bus_rider %>%
+group_by(route_1)
+# Convert to spatial (sf object)
+bus_rider_sf <- bus_rider %>%
+st_as_sf(coords = c("x", "y"), crs = 4326) %>%
+st_transform(2272)
+# Write to GeoJSON
+st_write(
+st_transform(bus_rider_sf, 4326),
+"bus_rider.geojson",
+driver = "GeoJSON",
+delete_dsn = TRUE
+)
+# Map
+p1 <- ggplot() +
+geom_sf(data = PhillyBoundary, fill = "gray95", color = "gray60") +
+geom_sf(data = bus_rider_sf, color = "#d62828", size = 0.1, alpha = 0.4) +
+labs(
+title = "Bus Stop Locations",
+subtitle = paste0("Bus Stops in Philly, n = ", nrow(bus_rider))
+)
+p1
