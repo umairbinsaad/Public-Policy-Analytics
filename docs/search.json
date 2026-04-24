@@ -1146,5 +1146,82 @@
     "title": "Lab 4: Spatial Predictive Analysis",
     "section": "Model Evaluation",
     "text": "Model Evaluation\nComparison to KDE baseline\n\n\n\n\n\n\n\n\n\n\nThis figure compares actual burglary counts, predictions from the Negative Binomial model, and the KDE baseline predictions to evaluate model performance. The first map shows the observed distribution of burglaries across grid cells, while the second map presents the model’s predicted counts using spatial features such as Alley Lights Out and hotspot distances. The third map shows predictions from the simpler KDE approach, which only captures general spatial intensity.\nVisually, the Negative Binomial model predictions more closely resemble the actual burglary pattern, capturing finer spatial variations and localized hotspots. In contrast, the KDE baseline appears more smoothed and generalized, missing some of the detailed variations seen in the actual data. This comparison indicates that the statistical model provides a more accurate and nuanced prediction of burglary patterns than the simple KDE approach, demonstrating the value of incorporating explanatory spatial features in predictive modeling.\n\n\n\n\nModel Performance Comparison\n\n\nmodel_mae\nmodel_rmse\nkde_mae\nkde_rmse\n\n\n\n\n2.376997\n3.491495\n2.057949\n2.949266\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe picture compares two maps showing how accurate a burglary prediction model is across different areas. The first map shows whether the model predicted too many or too few burglaries. Blue regions mean the model predicted more burglaries than actually happened, while red regions mean it predicted fewer burglaries than occurred. White areas show places where the prediction was close to correct. The second map focuses only on how large the prediction mistakes are. Dark colors represent small errors, while brighter colors represent larger errors. Together, the two maps show both the direction and the size of the model’s mistakes, helping identify which areas are predicted well and which areas need improvement."
+  },
+  {
+    "objectID": "lab_6/Final Challenge Presentation.html#motivation-research-question",
+    "href": "lab_6/Final Challenge Presentation.html#motivation-research-question",
+    "title": "Predicting Bus routes in Philadelphia",
+    "section": "Motivation & Research Question",
+    "text": "Motivation & Research Question\nMotivation\nThe City of Philadelphia is seeking to improve its Automated Valuation Model (AVM) for property tax assessments. A good AVM is important to ensure fair taxation based on current market values.\nResearch Question\nWhich structural characteristics, spatial features, and fixed effects best predict property sale prices in Philadelphia?"
+  },
+  {
+    "objectID": "lab_6/Final Challenge Presentation.html#data-sources",
+    "href": "lab_6/Final Challenge Presentation.html#data-sources",
+    "title": "Predicting Bus routes in Philadelphia",
+    "section": "Data Sources",
+    "text": "Data Sources\n\nPhiladelphia property sales, 2024–2025\nCensus ACS 2024 5-Year Estimates\n\nincome\neducational attainment\nracial and ethnic composition\npopulation density\n\nOpenDataPhilly\n\nparks\nSEPTA and Regional Rail access\nviolent crime\nvacant buildings\nneighborhood boundaries"
+  },
+  {
+    "objectID": "lab_6/Final Challenge Presentation.html#spatial-pattern-of-sale-prices",
+    "href": "lab_6/Final Challenge Presentation.html#spatial-pattern-of-sale-prices",
+    "title": "Predicting Bus routes in Philadelphia",
+    "section": "Spatial Pattern of Sale Prices",
+    "text": "Spatial Pattern of Sale Prices\n\n\nResidential sale prices across the city\n{width=“85%”}\n\nNeighborhood value categories\n{width=“85%”}"
+  },
+  {
+    "objectID": "lab_6/Final Challenge Presentation.html#what-drives-prices",
+    "href": "lab_6/Final Challenge Presentation.html#what-drives-prices",
+    "title": "Predicting Bus routes in Philadelphia",
+    "section": "What Drives Prices?",
+    "text": "What Drives Prices?"
+  },
+  {
+    "objectID": "lab_6/Final Challenge Presentation.html#model-building",
+    "href": "lab_6/Final Challenge Presentation.html#model-building",
+    "title": "Predicting Bus routes in Philadelphia",
+    "section": "Model Building",
+    "text": "Model Building\nWe built four models in sequence\n\nModel 1: Structural housing features only\nModel 2: Structural features + census tract characteristics\nModel 3: Structural + census + spatial accessibility and neighborhood conditions\nModel 4: Full model with fixed effects and interaction terms"
+  },
+  {
+    "objectID": "lab_6/Final Challenge Presentation.html#model-performance-final-model-fixed-effects-performed-the-best",
+    "href": "lab_6/Final Challenge Presentation.html#model-performance-final-model-fixed-effects-performed-the-best",
+    "title": "Predicting Bus routes in Philadelphia",
+    "section": "Model Performance: Final Model (Fixed Effects) Performed the Best",
+    "text": "Model Performance: Final Model (Fixed Effects) Performed the Best\nPerformance improved as we added neighborhood and spatial information\n\nThe structural-only model provides a baseline, but adding neighborhood census data and spatial variables improves performance. The best-performing model is the full model with fixed effects and interactions, suggesting that local context matters a great deal for predicting sale prices."
+  },
+  {
+    "objectID": "lab_6/Final Challenge Presentation.html#final-model-actual-vs.-predicted-prices",
+    "href": "lab_6/Final Challenge Presentation.html#final-model-actual-vs.-predicted-prices",
+    "title": "Predicting Bus routes in Philadelphia",
+    "section": "Final Model: Actual vs. Predicted Prices",
+    "text": "Final Model: Actual vs. Predicted Prices\n\nThe final model captures the broad geography of Philadelphia’s housing market fairly well. It reproduces the major high-value and low-value submarkets, even though some local prediction error remains."
+  },
+  {
+    "objectID": "lab_6/Final Challenge Presentation.html#what-mattered-most",
+    "href": "lab_6/Final Challenge Presentation.html#what-mattered-most",
+    "title": "Predicting Bus routes in Philadelphia",
+    "section": "What Mattered Most",
+    "text": "What Mattered Most\nStrong predictors in the final model\n\nTotal livable area\nNearby sale prices\nNeighborhood category / neighborhood fixed effects\nDistance to downtown\nNeighborhood vacancy\nViolent crime\nBathrooms and garage spaces\n\nStructural characteristics matter, but they are not enough on their own. The strongest model is the one that combines housing features with neighborhood and spatial context."
+  },
+  {
+    "objectID": "lab_6/Final Challenge Presentation.html#where-the-model-struggles",
+    "href": "lab_6/Final Challenge Presentation.html#where-the-model-struggles",
+    "title": "Predicting Bus routes in Philadelphia",
+    "section": "Where the Model Struggles",
+    "text": "Where the Model Struggles\n\nunusual or luxury properties\nrapidly changing neighborhoods\nhomes with limited quality information in administrative data\natypical sales that may not reflect normal market behavior\n\nThese are cases where price may depend on factors not fully observed in the data, such as renovations, block-level dynamics, investor demand, or non-standard transactions."
+  },
+  {
+    "objectID": "lab_6/Final Challenge Presentation.html#recommendations",
+    "href": "lab_6/Final Challenge Presentation.html#recommendations",
+    "title": "Predicting Bus routes in Philadelphia",
+    "section": "Recommendations",
+    "text": "Recommendations\nFor a better AVM in Philadelphia\n\nincorporate neighborhood fixed effects\ninclude spatial measures like downtown access, vacancy, and crime\nuse recent nearby sales to reflect local market conditions\nflag unusual properties for manual review"
+  },
+  {
+    "objectID": "lab_6/Final Challenge Presentation.html#limitations-next-steps",
+    "href": "lab_6/Final Challenge Presentation.html#limitations-next-steps",
+    "title": "Predicting Bus routes in Philadelphia",
+    "section": "Limitations & Next Steps",
+    "text": "Limitations & Next Steps\nLimitations\n\nadministrative data do not fully capture housing quality\nsome neighborhood measures are only available at the tract level\nthe model may miss very local block-by-block market variation\nresults are based on recent sales only\n\nNext steps\n\ntest nonlinear machine learning approaches\nadd richer measures of condition and renovation quality\nexplore finer-grained spatial effects\ncompare results directly to the current City AVM"
   }
 ]
