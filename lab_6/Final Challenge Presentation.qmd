@@ -16,7 +16,7 @@ format:
 
 
 
-### Problem statement 
+### Problem statement:- 
 
 
 
@@ -25,12 +25,15 @@ format:
 
 ---
 
+### Data sources
 
 
+###  Integration approach
 
 
+---
 
-
+### Methods overview
 
 
 
