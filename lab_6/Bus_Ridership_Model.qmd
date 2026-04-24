@@ -102,15 +102,18 @@ bus_rider <- bus_rider %>%
     y = as.numeric(y)
   ) %>%
   filter(!is.na(x), !is.na(y))
-
+View(bus_rider)
 #Aggregating Data to each bus stop 
 bus_rider_stops <- bus_rider %>%
   group_by(route_1)
+
+View(bus_rider_stops)
 
 # Convert to spatial (sf object)
 bus_rider_sf <- bus_rider %>%
   st_as_sf(coords = c("x", "y"), crs = 4326) %>%
   st_transform(2272)
+View(bus_rider_sf)
 
 # Write to GeoJSON
 st_write(
