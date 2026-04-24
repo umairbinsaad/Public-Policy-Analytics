@@ -87,7 +87,7 @@ bus_rider <- bind_rows(bus_rider_2022, bus_rider_2023, bus_rider_2024, bus_rider
 ```{r}
 # Load Philadelphia boundary
 PhillyBoundary <- 
-  st_read("Data/Census_Tracts_2010-shp/57b9fc6a-ab88-44db-8773-2a46a97483252020328-1-1vm5ejc.1re.shp") %>%
+  st_read("D:/Ph.D/US Pakistan Knowledge Corridore/Upenn/Subjects/Public Policy Analytics/Public-Policy-Analytics/lab_6/Data/Census_Tracts_2010-shp/Census_Tracts_2010-shp/57b9fc6a-ab88-44db-8773-2a46a97483252020328-1-1vm5ejc.1re.shp") %>%
   st_set_crs(2272)
 
 library(sf)
