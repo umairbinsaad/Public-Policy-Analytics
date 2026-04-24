@@ -1,0 +1,1 @@
+- [Presentation of Mid-Term]([https://allisonlass.github.io/CPLN-5920-SP26/lectures/week_01/week_01-slides.html](https://github.com/umairbinsaad/Public-Policy-Analytics/blob/main/docs/lab_3/MidTermPresentation.html))
