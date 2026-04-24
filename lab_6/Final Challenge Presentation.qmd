@@ -14,17 +14,30 @@ format:
     scrollable: true
 ---
 
-## Motivation & Research Question
 
-### Motivation
 
-The City of Philadelphia is seeking to improve its Automated Valuation Model (AVM) for property tax assessments. A good AVM is important to ensure fair taxation based on current market values.
+### Problem statement 
 
-### Research Question
 
-Which structural characteristics, spatial features, and fixed effects best predict property sale prices in Philadelphia?
 
-## Data Sources
+### What are you predicting and why?
+
+
+---
+
+
+
+
+
+
+
+
+
+
+---
+
+
+
 
 - **Philadelphia property sales, 2024–2025**
 - **Census ACS 2024 5-Year Estimates**

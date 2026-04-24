@@ -1152,14 +1152,14 @@
     "href": "lab_6/Final Challenge Presentation.html#motivation-research-question",
     "title": "Predicting Bus routes in Philadelphia",
     "section": "Motivation & Research Question",
-    "text": "Motivation & Research Question\nMotivation\nThe City of Philadelphia is seeking to improve its Automated Valuation Model (AVM) for property tax assessments. A good AVM is important to ensure fair taxation based on current market values.\nResearch Question\nWhich structural characteristics, spatial features, and fixed effects best predict property sale prices in Philadelphia?"
+    "text": "Motivation & Research Question\nMotivation\nThe City of Philadelphia is seeking to improve its Automated Valuation Model (AVM) for property tax assessments. A good AVM is important to ensure fair taxation based on current market values.\nResearch Question\nWhich structural characteristics, spatial features, and fixed effects best predict property sale prices in Philadelphia? dfsdfsdf"
   },
   {
     "objectID": "lab_6/Final Challenge Presentation.html#data-sources",
     "href": "lab_6/Final Challenge Presentation.html#data-sources",
     "title": "Predicting Bus routes in Philadelphia",
     "section": "Data Sources",
-    "text": "Data Sources\n\nPhiladelphia property sales, 2024–2025\nCensus ACS 2024 5-Year Estimates\n\nincome\neducational attainment\nracial and ethnic composition\npopulation density\n\nOpenDataPhilly\n\nparks\nSEPTA and Regional Rail access\nviolent crime\nvacant buildings\nneighborhood boundaries"
+    "text": "Data Sources"
   },
   {
     "objectID": "lab_6/Final Challenge Presentation.html#spatial-pattern-of-sale-prices",
@@ -1223,5 +1223,12 @@
     "title": "Predicting Bus routes in Philadelphia",
     "section": "Limitations & Next Steps",
     "text": "Limitations & Next Steps\nLimitations\n\nadministrative data do not fully capture housing quality\nsome neighborhood measures are only available at the tract level\nthe model may miss very local block-by-block market variation\nresults are based on recent sales only\n\nNext steps\n\ntest nonlinear machine learning approaches\nadd richer measures of condition and renovation quality\nexplore finer-grained spatial effects\ncompare results directly to the current City AVM"
+  },
+  {
+    "objectID": "lab_6/Final Challenge Presentation.html#asdasd",
+    "href": "lab_6/Final Challenge Presentation.html#asdasd",
+    "title": "Predicting Bus routes in Philadelphia",
+    "section": "##asdasd",
+    "text": "##asdasd\n\nPhiladelphia property sales, 2024–2025\nCensus ACS 2024 5-Year Estimates\n\nincome\neducational attainment\nracial and ethnic composition\npopulation density\n\nOpenDataPhilly\n\nparks\nSEPTA and Regional Rail access\nviolent crime\nvacant buildings\nneighborhood boundaries"
   }
 ]
