@@ -39,8 +39,30 @@ format:
 
 ---
 
+### Results:
 
 
+
+
+---
+
+### Model performance:
+
+
+---
+
+### Limitations and bias considerations:
+
+
+
+---
+
+
+
+### Recommendations for implementation:
+
+
+---
 
 - **Philadelphia property sales, 2024–2025**
 - **Census ACS 2024 5-Year Estimates**
