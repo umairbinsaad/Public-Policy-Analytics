@@ -9,9 +9,9 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.27">
 
-  <meta name="author" content="Alejandro Duque, Umair Bin Saad,   Star Advisors">
+  <meta name="author" content="Alejandro Duque, Umair Bin Saad, Indrajeet Pruthviraj Chavan, William Rantala   Star Advisors">
   <meta name="dcterms.date" content="2026-04-28">
-  <title>UMAIR BIN SAADD - MUSA 5080 Portfolio – Predicting Bus routes in Philadelphia</title>
+  <title>UMAIR BIN SAADD - MUSA 5080 Portfolio – Predicting locations for bus infrastructure in Philadelphia County</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -131,166 +131,268 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Predicting Bus routes in Philadelphia</h1>
-  <p class="subtitle">Improving Bus routes Assessments</p>
+  <h1 class="title">Predicting locations for bus infrastructure in Philadelphia County</h1>
+  <p class="subtitle">To invest/de-invest into bus infrastructure</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Alejandro Duque, Umair Bin Saad, <br> Star Advisors 
+Alejandro Duque, Umair Bin Saad, Indrajeet Pruthviraj Chavan, William Rantala <br> Star Advisors 
 </div>
 </div>
 </div>
 
   <p class="date">2026-04-28</p>
 </section>
-<section class="slide level2">
-
-<h3 id="problem-statement-">Problem statement:-</h3>
-<h3 id="what-are-you-predicting-and-why">What are you predicting and why?</h3>
+<section id="the-problem" class="slide level2">
+<h2>The Problem</h2>
+<div style="font-size: 26px; line-height: 1.6;">
+<strong>What policy problem are you solving?</strong>
+<p style="text-align: justify;">
+SEPTA’s bus network lacks a data-driven framework to identify which stops and routes need infrastructure investment or should be deprioritized — leading to inefficient resource allocation.
+</p>
+<p><br></p>
+<strong>Who is affected and why does it matter?</strong>
+<p style="text-align: justify;">
+Philadelphia residents — especially low-income and transit-dependent communities — who rely on buses as their primary mode of transportation. Poor infrastructure directly impacts mobility, equity, and economic access.
+</p>
+<p><br></p>
+<strong>What decision would your model inform?</strong>
+<p style="text-align: justify;">
+Where SEPTA and city planners should allocate budget for bus infrastructure upgrades (shelters, frequency, stops) and where services may need redesign or reduction.
+</p>
+<p><br></p>
+</div>
 </section>
-<section class="slide level2">
+<section id="the-solution" class="slide level2">
+<h2>The Solution</h2>
+<div style="font-size: 23px; line-height: 1.6;">
+<strong>What are you predictinsg and why?</strong><br>
 
-<h3 id="data-sources">Data sources</h3>
-<h3 id="integration-approach">Integration approach</h3>
+<p style="text-align: justify;">
+We are predicting ridership demand across bus stop locations using demographic, spatial, and operational variables — because demand is the strongest indicator of where investment is most needed.
+</p>
+<p><br></p>
+<strong>How does prediction help solve the problem?</strong><br>
+
+<p style="text-align: justify;">
+By quantifying expected ridership at each location, planners can rank stops by need, identify underserved high-demand areas, and justify investment decisions with evidence rather than assumption.
+</p>
+<p><br></p>
+<strong>What makes your approach better than current practice?</strong><br>
+
+<p style="text-align: justify;">
+Current decisions are often based on historical patterns or political priorities. Our model integrates Census demographics, spatial features, and ridership data into a Negative Binomial regression framework — making it reproducible, transparent, and equity-aware.
+</p>
+<p><br></p>
+</div>
 </section>
-<section class="slide level2">
-
-<h3 id="methods-overview">Methods overview</h3>
-</section>
-<section class="slide level2">
-
-<h3 id="results">Results:</h3>
-</section>
-<section class="slide level2">
-
-<h3 id="model-performance">Model performance:</h3>
-</section>
-<section class="slide level2">
-
-<h3 id="limitations-and-bias-considerations">Limitations and bias considerations:</h3>
-</section>
-<section class="slide level2">
-
-<h3 id="recommendations-for-implementation">Recommendations for implementation:</h3>
-</section>
-<section class="slide level2">
-
+<section id="data-sources" class="slide level2">
+<h2>Data sources</h2>
+<p><strong>Data Sources Used:</strong></p>
 <ul>
-<li><strong>Philadelphia property sales, 2024–2025</strong></li>
-<li><strong>Census ACS 2024 5-Year Estimates</strong>
+<li><strong>Primary Dataset:</strong> SEPTA Bus Ridership Data (2022 to 2025)<br>
+</li>
+<li><strong>Secondary Dataset:</strong> Census / ACS Socio-Economic Data /Philadelphia boundary</li>
+</ul>
+<div style="font-size: 18px; line-height: 1.6;">
+<p>Why We Are Combining These Sources</p>
+<p>✔ <strong>Explains transit demand patterns more accurately</strong><br>
+We combine bus ridership data with Census/ACS socio-economic data to better explain why ridership varies across locations.</p>
+<p>✔ <strong>Captures who depends on transit and where</strong><br>
+Demographic variables such as population density, income, race, and vehicle ownership help identify transit-dependent communities.</p>
+<p>✔ <strong>Explains spatial differences in ridership</strong><br>
+These variables improve the model by accounting for neighborhood-level variation beyond bus stop locations alone.</p>
+<p>✔ <strong>Spatially joined using buffer-based linkage</strong><br>
+Data is joined spatially using neighborhood or buffer-based linkage around bus stops, representing local catchment areas (e.g., 400–800m radius).</p>
+<p>✔ <strong>Supports equitable transit planning decisions</strong><br>
+This integration makes the model more realistic, policy-relevant, and useful for guiding infrastructure investment decisions.</p>
+</div>
+</section>
+<section id="methods-overview" class="slide level2">
+<h2>Methods overview: <br></h2>
+<p style="text-align: justify;">
+We are using <strong>Count Models (Poisson/negative binomial)</strong> for our this model which “Predict appropriate locations for investment or disinvestment in bus infrastructure in Philadelphia County using bus stop and ridership data.” because:<br><br>
+</p>
+<p style="text-align: justify;">
+Since bus ridership and related transit activity are <strong>count data</strong>, Poisson or Negative Binomial regression models are appropriate.<br><br>
+</p>
+<p style="text-align: justify;">
+-Linear regression is unsuitable because it assumes continuous data.<br><br>
+</p>
+<p style="text-align: justify;">
+-Transit ridership data often shows high variation, with some stops being very busy while many others have low usage, leading to uneven distribution. This creates over dispersion (variance greater than the mean), making the Negative Binomial model more suitable than Poisson.
+</p>
+<p></p>
+</section>
+<section id="feature-engineering" class="slide level2 scrollable">
+<h2>Feature engineering: <br></h2>
+<p>We are using the following categorical variables in our model: 1. Weekday vs Weekend<br>
+2. High ridership route vs Low ridership route<br></p>
+we are using these variables to:
+<p style="text-align: justify;">
+</p><ol type="1">
+<li><p>Capture differences in travel behavior<br>
+Transit demand changes significantly between weekdays (commuting) and weekends (leisure travel)</p></li>
+<li><p>Represent route-level demand structure<br>
+Distinguishes high-demand corridors from low-demand or underperforming routes</p></li>
+<li><p>Improve policy relevance<br>
+Helps identify where to invest (high ridership) and where to optimize or redesign service (low ridership)</p></li>
+<li><p>Easy interpretation for planning decisions<br>
+Results can be directly translated into operational and infrastructure planning actions</p>
+<p></p></li>
+</ol>
+</section>
+<section id="model-evaluation-spatial-features" class="slide level2">
+<h2>Model Evaluation | Spatial Features<br></h2>
+<strong>Nearest Transit Stops</strong>
+<p style="text-align: justify;">
+Distance to nearest transit stops is used as a spatial predictor, capturing accessibility and connectivity of bus infrastructure across Philadelphia County.
+</p>
+<p><br></p>
+<strong>Jobs Within a Half Mile (LEHD LODES)</strong>
+<p style="text-align: justify;">
+Employment density within a 0.5-mile buffer is included to capture the influence of job centers on transit demand and ridership patterns.
+</p>
+<p><br></p>
+<strong>Roads</strong>
+<p style="text-align: justify;">
+Road network data is incorporated to account for physical accessibility and connectivity surrounding each bus stop location.
+</p>
+<p><br></p>
+</section>
+<section id="model-evaluation-local-hotspots-cold-spots" class="slide level2">
+<h2>Model Evaluation | Local Hotspots &amp; Cold Spots<br></h2>
+<strong>Density of Stops Across Philadelphia</strong>
+<p style="text-align: justify;">
+Kernel density estimation is applied to identify spatial clusters of high and low bus stop concentration — revealing hotspots of transit activity and cold spots of underservice across Philadelphia County.
+</p>
+</section>
+<section id="model-evaluation-model-validation" class="slide level2">
+<h2>Model Evaluation | Model Validation</h2>
+<strong>Cross Validation</strong>
+<p style="text-align: justify;">
+K-fold cross-validation is applied to assess model generalizability by partitioning the data into training and testing sets across multiple folds, ensuring the model performs consistently beyond the training data.
+</p>
+<strong>Accuracy Metrics — MAE (Mean Absolute Error)</strong>
+<p style="text-align: justify;">
+Mean Absolute Error (MAE) is used to measure the average magnitude of prediction errors, providing an interpretable and policy-relevant measure of model accuracy in predicting ridership counts.
+</p>
+</section>
+<section id="the-evidence-model-accuracy" class="slide level2">
+<h2>The Evidence | Model Accuracy</h2>
+<p><strong>How accurate is your model?</strong></p>
 <ul>
-<li>income</li>
-<li>educational attainment</li>
-<li>racial and ethnic composition</li>
-<li>population density</li>
-</ul></li>
-<li><strong>OpenDataPhilly</strong>
-<ul>
-<li>parks</li>
-<li>SEPTA and Regional Rail access</li>
-<li>violent crime</li>
-<li>vacant buildings</li>
-<li>neighborhood boundaries</li>
-</ul></li>
+<li>MAE of <strong>[X] riders per stop</strong> — predictions deviate by an average of [X] passengers</li>
+<li>Model explains approximately <strong>[X]%</strong> of variation in ridership across Philadelphia County</li>
+<li>Overall predictive performance is <strong>[strong/moderate]</strong></li>
 </ul>
 </section>
-<section id="spatial-pattern-of-sale-prices" class="slide level2">
-<h2>Spatial Pattern of Sale Prices</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="residential-sale-prices-across-the-city">Residential sale prices across the city</h3>
-<p><img data-src="images/all_sales.png" data-fig-cap="Residential Sale Prices">{width=“85%”}</p>
-</div><div class="column" style="width:50%;">
-<h3 id="neighborhood-value-categories">Neighborhood value categories</h3>
-<p><img data-src="images/neighborhood_cat.png" data-fig-cap="Housing Price by Neighborhood Value Category">{width=“85%”}</p>
-</div></div>
-</section>
-<section id="what-drives-prices" class="slide level2">
-<h2>What Drives Prices?</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><img data-src="images/structureage.png" style="width:85.0%" data-fig-cap="Age of Property vs Sale Price"></p>
-<p><img data-src="images/livablearea.png" style="width:85.0%" data-fig-cap="Total Livable Area vs Sale Price"></p>
-</div><div class="column" style="width:50%;">
-<p><img data-src="images/vacancyrate.png" style="width:85.0%" data-fig-cap="Neighborhood Vacancy Rate vs Sale Price"></p>
-<p><img data-src="images/proximitycentercity.png" style="width:85.0%" data-fig-cap="Distance to City Hall (downtown) vs Sale Price"></p>
-</div></div>
-</section>
-<section id="model-building" class="slide level2">
-<h2>Model Building</h2>
-<h3 id="we-built-four-models-in-sequence">We built four models in sequence</h3>
+<section id="the-evidence-model-validation" class="slide level2">
+<h2>The Evidence | Model Validation</h2>
+<p><strong>How did you validate it?</strong></p>
 <ul>
-<li><strong>Model 1:</strong> Structural housing features only</li>
-<li><strong>Model 2:</strong> Structural features + census tract characteristics</li>
-<li><strong>Model 3:</strong> Structural + census + spatial accessibility and neighborhood conditions</li>
-<li><strong>Model 4:</strong> Full model with fixed effects and interaction terms</li>
+<li>Applied <strong>k-fold cross-validation</strong> — dataset split into training and testing sets across [k] folds</li>
+<li>Consistent MAE scores averaging <strong>[X]</strong> across folds — confirms model generalizes well</li>
+<li>No evidence of <strong>overfitting</strong> to specific locations</li>
+</ul>
+<p><strong>Spatial Autocorrelation Diagnostics</strong></p>
+<ul>
+<li>Moran’s I on residuals = <strong>[X]</strong> (p-value = [X])</li>
+<li>Indicates spatial autocorrelation is <strong>[negligible/partially addressed]</strong></li>
+<li>Model <strong>[adequately captures/does not fully capture]</strong> spatial structure of ridership demand</li>
 </ul>
 </section>
-<section id="model-performance-final-model-fixed-effects-performed-the-best" class="slide level2">
-<h2>Model Performance: Final Model (Fixed Effects) Performed the Best</h2>
-<h3 id="performance-improved-as-we-added-neighborhood-and-spatial-information">Performance improved as we added neighborhood and spatial information</h3>
-
-<img data-src="images/model_performance_table.png" data-fig-cap="Comparison of All Models" class="r-stretch"><p>The structural-only model provides a baseline, but adding neighborhood census data and spatial variables improves performance. The <strong>best-performing model</strong> is the full model with fixed effects and interactions, suggesting that local context matters a great deal for predicting sale prices.</p>
-</section>
-<section id="final-model-actual-vs.-predicted-prices" class="slide level2">
-<h2>Final Model: Actual vs.&nbsp;Predicted Prices</h2>
-
-<img data-src="images/fe_model.png" class="r-stretch"><p>The final model captures the broad geography of Philadelphia’s housing market fairly well. It reproduces the major high-value and low-value submarkets, even though some local prediction error remains.</p>
-</section>
-<section id="what-mattered-most" class="slide level2">
-<h2>What Mattered Most</h2>
-<h3 id="strong-predictors-in-the-final-model">Strong predictors in the final model</h3>
+<section id="the-evidence-limitations" class="slide level2">
+<h2>The Evidence | Limitations</h2>
+<p><strong>What are its limitations?</strong></p>
 <ul>
-<li><strong>Total livable area</strong></li>
-<li><strong>Nearby sale prices</strong></li>
-<li><strong>Neighborhood category / neighborhood fixed effects</strong></li>
-<li><strong>Distance to downtown</strong></li>
-<li><strong>Neighborhood vacancy</strong></li>
-<li><strong>Violent crime</strong></li>
-<li><strong>Bathrooms and garage spaces</strong></li>
-</ul>
-<p>Structural characteristics matter, but they are not enough on their own. The strongest model is the one that combines <strong>housing features with neighborhood and spatial context</strong>.</p>
-</section>
-<section id="where-the-model-struggles" class="slide level2">
-<h2>Where the Model Struggles</h2>
-<ul>
-<li>unusual or luxury properties</li>
-<li>rapidly changing neighborhoods</li>
-<li>homes with limited quality information in administrative data</li>
-<li>atypical sales that may not reflect normal market behavior</li>
-</ul>
-<p>These are cases where price may depend on factors not fully observed in the data, such as renovations, block-level dynamics, investor demand, or non-standard transactions.</p>
-</section>
-<section id="recommendations" class="slide level2">
-<h2>Recommendations</h2>
-<p>For a better AVM in Philadelphia</p>
-<ul>
-<li>incorporate <strong>neighborhood fixed effects</strong></li>
-<li>include <strong>spatial measures</strong> like downtown access, vacancy, and crime</li>
-<li>use <strong>recent nearby sales</strong> to reflect local market conditions</li>
-<li>flag unusual properties for <strong>manual review</strong></li>
+<li>Relies on <strong>static Census/ACS data</strong> — may not reflect recent demographic shifts</li>
+<li>Ridership counts are <strong>aggregated at stop level</strong> — do not capture trip purpose or time-of-day variation</li>
+<li><strong>Weekday/weekend</strong> distinction is the only temporal control included</li>
+<li>Does not account for <strong>real-time service disruptions</strong> or recent SEPTA network changes</li>
 </ul>
 </section>
-<section id="limitations-next-steps" class="slide level2">
-<h2>Limitations &amp; Next Steps</h2>
-<h3 id="limitations">Limitations</h3>
+<section id="the-evidence-bias-considerations" class="slide level2">
+<h2>The Evidence | Bias Considerations</h2>
+<p><strong>Could it introduce or perpetuate bias?</strong></p>
 <ul>
-<li>administrative data do not fully capture housing quality</li>
-<li>some neighborhood measures are only available at the tract level</li>
-<li>the model may miss very local block-by-block market variation</li>
-<li>results are based on recent sales only</li>
-</ul>
-<h3 id="next-steps">Next steps</h3>
-<ul>
-<li>test nonlinear machine learning approaches</li>
-<li>add richer measures of condition and renovation quality</li>
-<li>explore finer-grained spatial effects</li>
-<li>compare results directly to the current City AVM</li>
+<li>Model uses <strong>race and income</strong> as predictors — risk of reinforcing existing inequities</li>
+<li>Low ridership may reflect <strong>poor service quality</strong> rather than low demand</li>
+<li>Disinvestment decisions could <strong>disproportionately impact</strong> low-income and minority communities</li>
+<li>Model outputs must be interpreted alongside <strong>equity considerations</strong> to ensure fair infrastructure planning</li>
 </ul>
 </section>
-<section class="slide level2">
-
+<section id="section" class="slide level2 flexbox vcenter">
+<h2></h2>
+<div style="text-align: center; margin-top: 20%;">
+<p style="font-size: 100px; font-weight: bold;">
+Recommendations
+</p>
+</div>
+</section>
+<section id="the-implementation-practical-use" class="slide level2">
+<h2>The Implementation | Practical Use</h2>
+<p><strong>How would the city actually use this?</strong></p>
+<ul>
+<li>Model outputs can be used to generate an <strong>investment priority map</strong> of Philadelphia County bus stops</li>
+<li>Planners can rank stops by <strong>predicted ridership demand</strong> to guide budget allocation</li>
+<li>High-demand locations flagged for <strong>infrastructure upgrades</strong> — shelters, frequency, accessibility improvements</li>
+<li>Low-demand locations flagged for <strong>service redesign</strong> or operational optimization</li>
+<li>Can be integrated into <strong>SEPTA’s capital planning cycle</strong> as an evidence-based decision support tool</li>
+</ul>
+</section>
+<section id="the-implementation-data-requirements" class="slide level2">
+<h2>The Implementation | Data Requirements</h2>
+<p><strong>What data would they need to collect?</strong></p>
+<ul>
+<li><strong>Ridership data</strong> — regular updates to SEPTA boarding/alighting counts by stop</li>
+<li><strong>Census/ACS updates</strong> — annual demographic data at census tract level</li>
+<li><strong>Land use &amp; employment data</strong> — updated LEHD LODES jobs data within catchment areas</li>
+<li><strong>Road network data</strong> — OpenStreetMap or PennDOT road updates</li>
+<li><strong>Infrastructure condition data</strong> — current state of bus stops, shelters, and amenities</li>
+<li><strong>Real-time service data</strong> — disruptions, route changes, and frequency adjustments</li>
+</ul>
+</section>
+<section id="the-implementation-costs-benefits" class="slide level2">
+<h2>The Implementation | Costs &amp; Benefits</h2>
+<p><strong>What are the costs?</strong></p>
+<ul>
+<li><strong>Data collection &amp; maintenance</strong> — ongoing updates to ridership and census data</li>
+<li><strong>Technical capacity</strong> — GIS and statistical expertise required to run and update the model</li>
+<li><strong>Integration costs</strong> — embedding model into existing SEPTA planning workflows</li>
+</ul>
+<p><strong>What are the benefits?</strong></p>
+<ul>
+<li><strong>Efficient resource allocation</strong> — directs limited infrastructure budgets to highest-need locations</li>
+<li><strong>Evidence-based decisions</strong> — reduces reliance on political priorities or ad hoc planning</li>
+<li><strong>Equity gains</strong> — identifies underserved transit-dependent communities for targeted investment</li>
+<li><strong>Long-term cost savings</strong> — prevents over-investment in low-demand locations</li>
+</ul>
+</section>
+<section id="the-implementation-safeguards-needed" class="slide level2">
+<h2>The Implementation | Safeguards Needed</h2>
+<p><strong>What safeguards are needed?</strong></p>
+<ul>
+<li><strong>Equity review</strong> — model outputs must be reviewed against equity metrics before any disinvestment decision</li>
+<li><strong>Community engagement</strong> — affected neighborhoods should be consulted, especially low-income and minority communities</li>
+<li><strong>Transparency</strong> — model methodology and results should be publicly accessible and explainable</li>
+<li><strong>Regular model updates</strong> — predictions should be refreshed with new data to remain accurate and relevant</li>
+<li><strong>Human oversight</strong> — final investment decisions should involve planners, not be fully automated by the model</li>
+<li><strong>Bias audits</strong> — periodic checks to ensure model does not systematically disadvantage vulnerable communities</li>
+</ul>
+</section>
+<section id="section-1" class="slide level2 flexbox vcenter">
+<h2></h2>
+<div style="text-align: center; margin-top: 20%;">
+<p style="font-size: 60px; font-weight: bold;">
+Any Questions &amp; Answers
+</p>
+<p><br></p>
+<p style="font-size: 36px; font-style: italic;">
+Thank you for your attention!
+</p>
+</div>
 
 
 </section>

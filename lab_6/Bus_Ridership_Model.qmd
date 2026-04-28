@@ -80,7 +80,7 @@ colnames(bus_rider_2025) <- c ("x", "y", "fid", "mode", "route", "direction", "r
   "sun_on", "sun_off")
 
 bus_rider <- bind_rows(bus_rider_2022, bus_rider_2023, bus_rider_2024, bus_rider_2025)
-
+View(bus_rider)
 ```
 
 #### Step 3: Filtering Bus Ridership Data
