@@ -1,5 +1,89 @@
 [
   {
+    "objectID": "lab_6/PPA_Final_Model_Challenge.html#policy-problem-and-context",
+    "href": "lab_6/PPA_Final_Model_Challenge.html#policy-problem-and-context",
+    "title": "SEPTA Bus Ridership Prediction",
+    "section": "Policy Problem and Context",
+    "text": "Policy Problem and Context\nBased on predicted ridership, which parts of Philadelphia should SEPTA invest more or less resources?\n\nBetter service riders in underserved areas\nOptimize efficiency to conserve funding during SEPTA’s current fiscal crisis"
+  },
+  {
+    "objectID": "lab_6/PPA_Final_Model_Challenge.html#data-sources",
+    "href": "lab_6/PPA_Final_Model_Challenge.html#data-sources",
+    "title": "SEPTA Bus Ridership Prediction",
+    "section": "Data Sources",
+    "text": "Data Sources\nSEPTA Bus Stop Summaries — Fall Season\n\n2022, 2023, 2024, 2025\n\nWhy only 2022–2025?\n\nThese years are clearly outside the main pandemic period\nRidership has risen to approximately 80% of pre-pandemic levels\nBetter reflects future ridership trends than earlier pandemic-era data"
+  },
+  {
+    "objectID": "lab_6/PPA_Final_Model_Challenge.html#how-are-we-predicting-ridership",
+    "href": "lab_6/PPA_Final_Model_Challenge.html#how-are-we-predicting-ridership",
+    "title": "SEPTA Bus Ridership Prediction",
+    "section": "How Are We Predicting Ridership?",
+    "text": "How Are We Predicting Ridership?\nPredictors used across the city at the grid-cell level:\n\nPopulation density\nMedian household income\nVehicle ownership\nDistance to nearest El stop\nJobs within half a mile\nRoad presence"
+  },
+  {
+    "objectID": "lab_6/PPA_Final_Model_Challenge.html#data-exploration",
+    "href": "lab_6/PPA_Final_Model_Challenge.html#data-exploration",
+    "title": "SEPTA Bus Ridership Prediction",
+    "section": "Data Exploration",
+    "text": "Data Exploration"
+  },
+  {
+    "objectID": "lab_6/PPA_Final_Model_Challenge.html#data-exploration-contd.",
+    "href": "lab_6/PPA_Final_Model_Challenge.html#data-exploration-contd.",
+    "title": "SEPTA Bus Ridership Prediction",
+    "section": "Data Exploration contd.",
+    "text": "Data Exploration contd."
+  },
+  {
+    "objectID": "lab_6/PPA_Final_Model_Challenge.html#what-models-are-we-using",
+    "href": "lab_6/PPA_Final_Model_Challenge.html#what-models-are-we-using",
+    "title": "SEPTA Bus Ridership Prediction",
+    "section": "What Models Are We Using?",
+    "text": "What Models Are We Using?\nWe ran four models of increasing complexity:\nOLS — Baseline linear model\nSpatial Lag — Accounts for spatial autocorrelation in ridership\nPoisson — Standard count model for comparison\nNegative Binomial — Handles overdispersed count data"
+  },
+  {
+    "objectID": "lab_6/PPA_Final_Model_Challenge.html#model-comparison",
+    "href": "lab_6/PPA_Final_Model_Challenge.html#model-comparison",
+    "title": "SEPTA Bus Ridership Prediction",
+    "section": "Model Comparison",
+    "text": "Model Comparison\n\n\n\nModel\nMAE\nRMSE\n\n\n\n\nOLS(ln_riders)\n1.18\n1.50\n\n\nSpatial Lag(ln_riders)\n1.14\n1.47\n\n\nPoisson\n523\n1475.21\n\n\nNegative Binomial\n523\n1473.69\n\n\n\n\nThe Negative Binomial is our best model\nPoisson assumes mean equals variance — almost never true for ridership data\nThe Negative Binomial’s dispersion parameter better handles overdispersion, producing more trustworthy standard errors and p-values"
+  },
+  {
+    "objectID": "lab_6/PPA_Final_Model_Challenge.html#actual-vs.-predicted-ridership",
+    "href": "lab_6/PPA_Final_Model_Challenge.html#actual-vs.-predicted-ridership",
+    "title": "SEPTA Bus Ridership Prediction",
+    "section": "Actual vs. Predicted Ridership",
+    "text": "Actual vs. Predicted Ridership"
+  },
+  {
+    "objectID": "lab_6/PPA_Final_Model_Challenge.html#limitations-bias-considerations",
+    "href": "lab_6/PPA_Final_Model_Challenge.html#limitations-bias-considerations",
+    "title": "SEPTA Bus Ridership Prediction",
+    "section": "Limitations & Bias Considerations",
+    "text": "Limitations & Bias Considerations\nMulticollinearity\n\nPopulation, route count, and nearby jobs are correlated — limits our ability to isolate the effect of any single predictor\n\nModel is Anchored to Current Conditions\n\nPredictions reflect existing ridership under existing infrastructure\nA transit desert predicts low ridership — not because demand is absent, but because supply was never provided\nThis risks reinforcing existing inequities in transit access\nWe excluded cells that contain bus hubs with 10+ lines – these would require their own models"
+  },
+  {
+    "objectID": "lab_6/PPA_Final_Model_Challenge.html#recommendations-for-implementation",
+    "href": "lab_6/PPA_Final_Model_Challenge.html#recommendations-for-implementation",
+    "title": "SEPTA Bus Ridership Prediction",
+    "section": "Recommendations for Implementation",
+    "text": "Recommendations for Implementation\nHow would the city use our model?\n\n⁠⁠The model can be used for analyzing and identifying areas with higher ridership to create a investment strategies (grid cells with high predicted ridership and low current ridership)\n⁠⁠Consolidate or reduce service in areas where there is low predicted ridership\n⁠⁠Simply use the model to predict future ridership to plan capacity building within SEPTA"
+  },
+  {
+    "objectID": "lab_6/PPA_Final_Model_Challenge.html#example-model-implementation",
+    "href": "lab_6/PPA_Final_Model_Challenge.html#example-model-implementation",
+    "title": "SEPTA Bus Ridership Prediction",
+    "section": "Example Model Implementation",
+    "text": "Example Model Implementation\n\nPriority determined by predicted ridership minus actual ridership\n\nHigh gap = predicted ridership is much higher than actual\nModerate gap = predicted is slightly more than actual\nSmall gap = predicted is more or less on-par with actual"
+  },
+  {
+    "objectID": "lab_6/PPA_Final_Model_Challenge.html#questions",
+    "href": "lab_6/PPA_Final_Model_Challenge.html#questions",
+    "title": "SEPTA Bus Ridership Prediction",
+    "section": "Questions?",
+    "text": "Questions?"
+  },
+  {
     "objectID": "lab_5/lab_5.html",
     "href": "lab_5/lab_5.html",
     "title": "Lab 5: Bikeshare_SpaceTime_Prediction",
@@ -1146,328 +1230,6 @@
     "title": "Lab 4: Spatial Predictive Analysis",
     "section": "Model Evaluation",
     "text": "Model Evaluation\nComparison to KDE baseline\n\n\n\n\n\n\n\n\n\n\nThis figure compares actual burglary counts, predictions from the Negative Binomial model, and the KDE baseline predictions to evaluate model performance. The first map shows the observed distribution of burglaries across grid cells, while the second map presents the model’s predicted counts using spatial features such as Alley Lights Out and hotspot distances. The third map shows predictions from the simpler KDE approach, which only captures general spatial intensity.\nVisually, the Negative Binomial model predictions more closely resemble the actual burglary pattern, capturing finer spatial variations and localized hotspots. In contrast, the KDE baseline appears more smoothed and generalized, missing some of the detailed variations seen in the actual data. This comparison indicates that the statistical model provides a more accurate and nuanced prediction of burglary patterns than the simple KDE approach, demonstrating the value of incorporating explanatory spatial features in predictive modeling.\n\n\n\n\nModel Performance Comparison\n\n\nmodel_mae\nmodel_rmse\nkde_mae\nkde_rmse\n\n\n\n\n2.376997\n3.491495\n2.057949\n2.949266\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe picture compares two maps showing how accurate a burglary prediction model is across different areas. The first map shows whether the model predicted too many or too few burglaries. Blue regions mean the model predicted more burglaries than actually happened, while red regions mean it predicted fewer burglaries than occurred. White areas show places where the prediction was close to correct. The second map focuses only on how large the prediction mistakes are. Dark colors represent small errors, while brighter colors represent larger errors. Together, the two maps show both the direction and the size of the model’s mistakes, helping identify which areas are predicted well and which areas need improvement."
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#motivation-research-question",
-    "href": "lab_6/Final Challenge Presentation.html#motivation-research-question",
-    "title": "Predicting Bus routes in Philadelphia",
-    "section": "Motivation & Research Question",
-    "text": "Motivation & Research Question\nMotivation\nThe City of Philadelphia is seeking to improve its Automated Valuation Model (AVM) for property tax assessments. A good AVM is important to ensure fair taxation based on current market values.\nResearch Question\nWhich structural characteristics, spatial features, and fixed effects best predict property sale prices in Philadelphia? dfsdfsdf"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#data-sources",
-    "href": "lab_6/Final Challenge Presentation.html#data-sources",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "Data sources",
-    "text": "Data sources\nData Sources Used:\n\nPrimary Dataset: SEPTA Bus Ridership Data (2022 to 2025)\n\nSecondary Dataset: Census / ACS Socio-Economic Data /Philadelphia boundary\n\n\nWhy We Are Combining These Sources\n✔ Explains transit demand patterns more accurately\nWe combine bus ridership data with Census/ACS socio-economic data to better explain why ridership varies across locations.\n✔ Captures who depends on transit and where\nDemographic variables such as population density, income, race, and vehicle ownership help identify transit-dependent communities.\n✔ Explains spatial differences in ridership\nThese variables improve the model by accounting for neighborhood-level variation beyond bus stop locations alone.\n✔ Spatially joined using buffer-based linkage\nData is joined spatially using neighborhood or buffer-based linkage around bus stops, representing local catchment areas (e.g., 400–800m radius).\n✔ Supports equitable transit planning decisions\nThis integration makes the model more realistic, policy-relevant, and useful for guiding infrastructure investment decisions."
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#spatial-pattern-of-sale-prices",
-    "href": "lab_6/Final Challenge Presentation.html#spatial-pattern-of-sale-prices",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "Spatial Pattern of Sale Prices",
-    "text": "Spatial Pattern of Sale Prices\n\n\nResidential sale prices across the city\n{width=“85%”}\n\nNeighborhood value categories\n{width=“85%”}"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#what-drives-prices",
-    "href": "lab_6/Final Challenge Presentation.html#what-drives-prices",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "What Drives Prices?",
-    "text": "What Drives Prices?"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#model-building",
-    "href": "lab_6/Final Challenge Presentation.html#model-building",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "Model Building",
-    "text": "Model Building\nWe built four models in sequence\n\nModel 1: Structural housing features only\nModel 2: Structural features + census tract characteristics\nModel 3: Structural + census + spatial accessibility and neighborhood conditions\nModel 4: Full model with fixed effects and interaction terms"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#model-performance-final-model-fixed-effects-performed-the-best",
-    "href": "lab_6/Final Challenge Presentation.html#model-performance-final-model-fixed-effects-performed-the-best",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "Model Performance: Final Model (Fixed Effects) Performed the Best",
-    "text": "Model Performance: Final Model (Fixed Effects) Performed the Best\nPerformance improved as we added neighborhood and spatial information\n\nThe structural-only model provides a baseline, but adding neighborhood census data and spatial variables improves performance. The best-performing model is the full model with fixed effects and interactions, suggesting that local context matters a great deal for predicting sale prices."
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#final-model-actual-vs.-predicted-prices",
-    "href": "lab_6/Final Challenge Presentation.html#final-model-actual-vs.-predicted-prices",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "Final Model: Actual vs. Predicted Prices",
-    "text": "Final Model: Actual vs. Predicted Prices\n\nThe final model captures the broad geography of Philadelphia’s housing market fairly well. It reproduces the major high-value and low-value submarkets, even though some local prediction error remains."
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#what-mattered-most",
-    "href": "lab_6/Final Challenge Presentation.html#what-mattered-most",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "What Mattered Most",
-    "text": "What Mattered Most\nStrong predictors in the final model\n\nTotal livable area\nNearby sale prices\nNeighborhood category / neighborhood fixed effects\nDistance to downtown\nNeighborhood vacancy\nViolent crime\nBathrooms and garage spaces\n\nStructural characteristics matter, but they are not enough on their own. The strongest model is the one that combines housing features with neighborhood and spatial context."
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#where-the-model-struggles",
-    "href": "lab_6/Final Challenge Presentation.html#where-the-model-struggles",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "Where the Model Struggles",
-    "text": "Where the Model Struggles\n\nunusual or luxury properties\nrapidly changing neighborhoods\nhomes with limited quality information in administrative data\natypical sales that may not reflect normal market behavior\n\nThese are cases where price may depend on factors not fully observed in the data, such as renovations, block-level dynamics, investor demand, or non-standard transactions."
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#recommendations",
-    "href": "lab_6/Final Challenge Presentation.html#recommendations",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "# Recommendations",
-    "text": "# Recommendations"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#limitations-next-steps",
-    "href": "lab_6/Final Challenge Presentation.html#limitations-next-steps",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "Limitations & Next Steps",
-    "text": "Limitations & Next Steps\nLimitations\n\nadministrative data do not fully capture housing quality\nsome neighborhood measures are only available at the tract level\nthe model may miss very local block-by-block market variation\nresults are based on recent sales only\n\nNext steps\n\ntest nonlinear machine learning approaches\nadd richer measures of condition and renovation quality\nexplore finer-grained spatial effects\ncompare results directly to the current City AVM"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#asdasd",
-    "href": "lab_6/Final Challenge Presentation.html#asdasd",
-    "title": "Predicting Bus routes in Philadelphia",
-    "section": "##asdasd",
-    "text": "##asdasd\n\nPhiladelphia property sales, 2024–2025\nCensus ACS 2024 5-Year Estimates\n\nincome\neducational attainment\nracial and ethnic composition\npopulation density\n\nOpenDataPhilly\n\nparks\nSEPTA and Regional Rail access\nviolent crime\nvacant buildings\nneighborhood boundaries"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#methods-overview",
-    "href": "lab_6/Final Challenge Presentation.html#methods-overview",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "Methods overview: ",
-    "text": "Methods overview: \n\nWe are using Count Models (Poisson/negative binomial) for our this model which “Predict appropriate locations for investment or disinvestment in bus infrastructure in Philadelphia County using bus stop and ridership data.” because:\n\n\nSince bus ridership and related transit activity are count data, Poisson or Negative Binomial regression models are appropriate.\n\n\n-Linear regression is unsuitable because it assumes continuous data.\n\n\n-Transit ridership data often shows high variation, with some stops being very busy while many others have low usage, leading to uneven distribution. This creates over dispersion (variance greater than the mean), making the Negative Binomial model more suitable than Poisson."
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#linear-regression-is-unsuitable-because-it-assumes-continuous-data.",
-    "href": "lab_6/Final Challenge Presentation.html#linear-regression-is-unsuitable-because-it-assumes-continuous-data.",
-    "title": "Predicting Bus routes in Philadelphia",
-    "section": "Linear regression is unsuitable because it assumes continuous data.",
-    "text": "Linear regression is unsuitable because it assumes continuous data.\nResults:"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#feature-engineering",
-    "href": "lab_6/Final Challenge Presentation.html#feature-engineering",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "Feature engineering: ",
-    "text": "Feature engineering: \nWe are using the following categorical variables in our model: 1. Weekday vs Weekend\n2. High ridership route vs Low ridership route\nwe are using these variables to:\n\n\nCapture differences in travel behavior\nTransit demand changes significantly between weekdays (commuting) and weekends (leisure travel)\nRepresent route-level demand structure\nDistinguishes high-demand corridors from low-demand or underperforming routes\nImprove policy relevance\nHelps identify where to invest (high ridership) and where to optimize or redesign service (low ridership)\nEasy interpretation for planning decisions\nResults can be directly translated into operational and infrastructure planning actions"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#incorporating-multiple-data-sources",
-    "href": "lab_6/Final Challenge Presentation.html#incorporating-multiple-data-sources",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "Incorporating Multiple Data Sources",
-    "text": "Incorporating Multiple Data Sources\nData Sources Used:\n\nPrimary Dataset: SEPTA Bus Ridership Data\n\nSecondary Dataset: Census / ACS Socio-Economic Data"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#why-we-are-combining-these-sources",
-    "href": "lab_6/Final Challenge Presentation.html#why-we-are-combining-these-sources",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "Why We Are Combining These Sources",
-    "text": "Why We Are Combining These Sources\n✔ Explains transit demand patterns more accurately\nWe combine bus ridership data with Census/ACS socio-economic data to better explain why ridership varies across locations.\n✔ Captures who depends on transit and where\nDemographic variables such as population density, income, race, and vehicle ownership help identify transit-dependent communities.\n✔ Explains spatial differences in ridership\nThese variables improve the model by accounting for neighborhood-level variation beyond bus stop locations alone.\n✔ Spatially joined using buffer-based linkage\nData is joined spatially using neighborhood or buffer-based linkage around bus stops, representing local catchment areas (e.g., 400–800m radius).\n✔ Supports equitable transit planning decisions\nThis integration makes the model more realistic, policy-relevant, and useful for guiding infrastructure investment decisions.\nIntegration approach"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#the-problem",
-    "href": "lab_6/Final Challenge Presentation.html#the-problem",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "The Problem",
-    "text": "The Problem\n\nWhat policy problem are you solving?\n\nSEPTA’s bus network lacks a data-driven framework to identify which stops and routes need infrastructure investment or should be deprioritized — leading to inefficient resource allocation.\n\n\nWho is affected and why does it matter?\n\nPhiladelphia residents — especially low-income and transit-dependent communities — who rely on buses as their primary mode of transportation. Poor infrastructure directly impacts mobility, equity, and economic access.\n\n\nWhat decision would your model inform?\n\nWhere SEPTA and city planners should allocate budget for bus infrastructure upgrades (shelters, frequency, stops) and where services may need redesign or reduction."
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#section",
-    "href": "lab_6/Final Challenge Presentation.html#section",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "",
-    "text": "Recommendations"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#the-solution",
-    "href": "lab_6/Final Challenge Presentation.html#the-solution",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "The Solution",
-    "text": "The Solution\n\nWhat are you predictinsg and why?\n\n\nWe are predicting ridership demand across bus stop locations using demographic, spatial, and operational variables — because demand is the strongest indicator of where investment is most needed.\n\n\nHow does prediction help solve the problem?\n\n\nBy quantifying expected ridership at each location, planners can rank stops by need, identify underserved high-demand areas, and justify investment decisions with evidence rather than assumption.\n\n\nWhat makes your approach better than current practice?\n\n\nCurrent decisions are often based on historical patterns or political priorities. Our model integrates Census demographics, spatial features, and ridership data into a Negative Binomial regression framework — making it reproducible, transparent, and equity-aware."
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#model-evaluation-spatial-features",
-    "href": "lab_6/Final Challenge Presentation.html#model-evaluation-spatial-features",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "Model Evaluation | Spatial Features",
-    "text": "Model Evaluation | Spatial Features\nNearest Transit Stops\n\nDistance to nearest transit stops is used as a spatial predictor, capturing accessibility and connectivity of bus infrastructure across Philadelphia County.\n\n\nJobs Within a Half Mile (LEHD LODES)\n\nEmployment density within a 0.5-mile buffer is included to capture the influence of job centers on transit demand and ridership patterns.\n\n\nRoads\n\nRoad network data is incorporated to account for physical accessibility and connectivity surrounding each bus stop location."
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#model-evaluation-local-hotspots-cold-spots",
-    "href": "lab_6/Final Challenge Presentation.html#model-evaluation-local-hotspots-cold-spots",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "Model Evaluation | Local Hotspots & Cold Spots",
-    "text": "Model Evaluation | Local Hotspots & Cold Spots\nDensity of Stops Across Philadelphia\n\nKernel density estimation is applied to identify spatial clusters of high and low bus stop concentration — revealing hotspots of transit activity and cold spots of underservice across Philadelphia County."
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#model-evaluation-model-validation",
-    "href": "lab_6/Final Challenge Presentation.html#model-evaluation-model-validation",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "Model Evaluation | Model Validation",
-    "text": "Model Evaluation | Model Validation\nCross Validation\n\nK-fold cross-validation is applied to assess model generalizability by partitioning the data into training and testing sets across multiple folds, ensuring the model performs consistently beyond the training data.\n\nAccuracy Metrics — MAE (Mean Absolute Error)\n\nMean Absolute Error (MAE) is used to measure the average magnitude of prediction errors, providing an interpretable and policy-relevant measure of model accuracy in predicting ridership counts."
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#the-evidence-model-accuracy",
-    "href": "lab_6/Final Challenge Presentation.html#the-evidence-model-accuracy",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "The Evidence | Model Accuracy",
-    "text": "The Evidence | Model Accuracy\nHow accurate is your model?\n\nMAE of [X] riders per stop — predictions deviate by an average of [X] passengers\nModel explains approximately [X]% of variation in ridership across Philadelphia County\nOverall predictive performance is [strong/moderate]"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#the-evidence-model-validation",
-    "href": "lab_6/Final Challenge Presentation.html#the-evidence-model-validation",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "The Evidence | Model Validation",
-    "text": "The Evidence | Model Validation\nHow did you validate it?\n\nApplied k-fold cross-validation — dataset split into training and testing sets across [k] folds\nConsistent MAE scores averaging [X] across folds — confirms model generalizes well\nNo evidence of overfitting to specific locations\n\nSpatial Autocorrelation Diagnostics\n\nMoran’s I on residuals = [X] (p-value = [X])\nIndicates spatial autocorrelation is [negligible/partially addressed]\nModel [adequately captures/does not fully capture] spatial structure of ridership demand"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#the-evidence-limitations",
-    "href": "lab_6/Final Challenge Presentation.html#the-evidence-limitations",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "The Evidence | Limitations",
-    "text": "The Evidence | Limitations\nWhat are its limitations?\n\nRelies on static Census/ACS data — may not reflect recent demographic shifts\nRidership counts are aggregated at stop level — do not capture trip purpose or time-of-day variation\nWeekday/weekend distinction is the only temporal control included\nDoes not account for real-time service disruptions or recent SEPTA network changes"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#the-evidence-bias-considerations",
-    "href": "lab_6/Final Challenge Presentation.html#the-evidence-bias-considerations",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "The Evidence | Bias Considerations",
-    "text": "The Evidence | Bias Considerations\nCould it introduce or perpetuate bias?\n\nModel uses race and income as predictors — risk of reinforcing existing inequities\nLow ridership may reflect poor service quality rather than low demand\nDisinvestment decisions could disproportionately impact low-income and minority communities\nModel outputs must be interpreted alongside equity considerations to ensure fair infrastructure planning"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#the-implementation-practical-use",
-    "href": "lab_6/Final Challenge Presentation.html#the-implementation-practical-use",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "The Implementation | Practical Use",
-    "text": "The Implementation | Practical Use\nHow would the city actually use this?\n\nModel outputs can be used to generate an investment priority map of Philadelphia County bus stops\nPlanners can rank stops by predicted ridership demand to guide budget allocation\nHigh-demand locations flagged for infrastructure upgrades — shelters, frequency, accessibility improvements\nLow-demand locations flagged for service redesign or operational optimization\nCan be integrated into SEPTA’s capital planning cycle as an evidence-based decision support tool"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#the-implementation-data-requirements",
-    "href": "lab_6/Final Challenge Presentation.html#the-implementation-data-requirements",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "The Implementation | Data Requirements",
-    "text": "The Implementation | Data Requirements\nWhat data would they need to collect?\n\nRidership data — regular updates to SEPTA boarding/alighting counts by stop\nCensus/ACS updates — annual demographic data at census tract level\nLand use & employment data — updated LEHD LODES jobs data within catchment areas\nRoad network data — OpenStreetMap or PennDOT road updates\nInfrastructure condition data — current state of bus stops, shelters, and amenities\nReal-time service data — disruptions, route changes, and frequency adjustments"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#the-implementation-costs-benefits",
-    "href": "lab_6/Final Challenge Presentation.html#the-implementation-costs-benefits",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "The Implementation | Costs & Benefits",
-    "text": "The Implementation | Costs & Benefits\nWhat are the costs?\n\nData collection & maintenance — ongoing updates to ridership and census data\nTechnical capacity — GIS and statistical expertise required to run and update the model\nIntegration costs — embedding model into existing SEPTA planning workflows\n\nWhat are the benefits?\n\nEfficient resource allocation — directs limited infrastructure budgets to highest-need locations\nEvidence-based decisions — reduces reliance on political priorities or ad hoc planning\nEquity gains — identifies underserved transit-dependent communities for targeted investment\nLong-term cost savings — prevents over-investment in low-demand locations"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#the-implementation-safeguards-needed",
-    "href": "lab_6/Final Challenge Presentation.html#the-implementation-safeguards-needed",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "The Implementation | Safeguards Needed",
-    "text": "The Implementation | Safeguards Needed\nWhat safeguards are needed?\n\nEquity review — model outputs must be reviewed against equity metrics before any disinvestment decision\nCommunity engagement — affected neighborhoods should be consulted, especially low-income and minority communities\nTransparency — model methodology and results should be publicly accessible and explainable\nRegular model updates — predictions should be refreshed with new data to remain accurate and relevant\nHuman oversight — final investment decisions should involve planners, not be fully automated by the model\nBias audits — periodic checks to ensure model does not systematically disadvantage vulnerable communities"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#any-questions-answers",
-    "href": "lab_6/Final Challenge Presentation.html#any-questions-answers",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "Any Questions & Answers",
-    "text": "Any Questions & Answers\n\n\nThank you for your attention!\n\n\n\nWe are happy to answer any questions regarding:\n\n\nThe Problem — Transit inequity and infrastructure gaps in Philadelphia\nThe Model — Negative Binomial regression and feature engineering\nThe Data — SEPTA ridership, Census/ACS, and spatial variables\nThe Results — Model accuracy, validation, and spatial diagnostics\nThe Implementation — How SEPTA and city planners can use this tool\n\n\n\n“Data-driven decisions for a more equitable Philadelphia transit system.”"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#recommendations-the-implementation-practical-use",
-    "href": "lab_6/Final Challenge Presentation.html#recommendations-the-implementation-practical-use",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "Recommendations | The Implementation | Practical Use",
-    "text": "Recommendations | The Implementation | Practical Use\nHow would the city actually use this?\n\nModel outputs can be used to generate an investment priority map of Philadelphia County bus stops\nPlanners can rank stops by predicted ridership demand to guide budget allocation\nHigh-demand locations flagged for infrastructure upgrades — shelters, frequency, accessibility improvements\nLow-demand locations flagged for service redesign or operational optimization\nCan be integrated into SEPTA’s capital planning cycle as an evidence-based decision support tool"
-  },
-  {
-    "objectID": "lab_6/Final Challenge Presentation.html#section-1",
-    "href": "lab_6/Final Challenge Presentation.html#section-1",
-    "title": "Predicting locations for bus infrastructure in Philadelphia County",
-    "section": "",
-    "text": "Any Questions & Answers\n\n\n\nThank you for your attention!"
-  },
-  {
-    "objectID": "lab_6/PPA_Final_Model_Challenge.html#policy-problem-and-context",
-    "href": "lab_6/PPA_Final_Model_Challenge.html#policy-problem-and-context",
-    "title": "SEPTA Bus Ridership Prediction",
-    "section": "Policy Problem and Context",
-    "text": "Policy Problem and Context\nBased on predicted ridership, which parts of Philadelphia should SEPTA invest more or less resources?\n\nBetter service riders in underserved areas\nOptimize efficiency to conserve funding during SEPTA’s current fiscal crisis"
-  },
-  {
-    "objectID": "lab_6/PPA_Final_Model_Challenge.html#data-sources",
-    "href": "lab_6/PPA_Final_Model_Challenge.html#data-sources",
-    "title": "SEPTA Bus Ridership Prediction",
-    "section": "Data Sources",
-    "text": "Data Sources\nSEPTA Bus Stop Summaries — Fall Season\n\n2022, 2023, 2024, 2025\n\nWhy only 2022–2025?\n\nThese years are clearly outside the main pandemic period\nRidership has risen to approximately 80% of pre-pandemic levels\nBetter reflects future ridership trends than earlier pandemic-era data"
-  },
-  {
-    "objectID": "lab_6/PPA_Final_Model_Challenge.html#how-are-we-predicting-ridership",
-    "href": "lab_6/PPA_Final_Model_Challenge.html#how-are-we-predicting-ridership",
-    "title": "SEPTA Bus Ridership Prediction",
-    "section": "How Are We Predicting Ridership?",
-    "text": "How Are We Predicting Ridership?\nPredictors used across the city at the grid-cell level:\n\nPopulation density\nMedian household income\nVehicle ownership\nDistance to nearest El stop\nJobs within half a mile\nRoad presence"
-  },
-  {
-    "objectID": "lab_6/PPA_Final_Model_Challenge.html#data-exploration",
-    "href": "lab_6/PPA_Final_Model_Challenge.html#data-exploration",
-    "title": "SEPTA Bus Ridership Prediction",
-    "section": "Data Exploration",
-    "text": "Data Exploration"
-  },
-  {
-    "objectID": "lab_6/PPA_Final_Model_Challenge.html#data-exploration-contd.",
-    "href": "lab_6/PPA_Final_Model_Challenge.html#data-exploration-contd.",
-    "title": "SEPTA Bus Ridership Prediction",
-    "section": "Data Exploration contd.",
-    "text": "Data Exploration contd."
-  },
-  {
-    "objectID": "lab_6/PPA_Final_Model_Challenge.html#what-models-are-we-using",
-    "href": "lab_6/PPA_Final_Model_Challenge.html#what-models-are-we-using",
-    "title": "SEPTA Bus Ridership Prediction",
-    "section": "What Models Are We Using?",
-    "text": "What Models Are We Using?\nWe ran four models of increasing complexity:\nOLS — Baseline linear model\nSpatial Lag — Accounts for spatial autocorrelation in ridership\nPoisson — Standard count model for comparison\nNegative Binomial — Handles overdispersed count data"
-  },
-  {
-    "objectID": "lab_6/PPA_Final_Model_Challenge.html#model-comparison",
-    "href": "lab_6/PPA_Final_Model_Challenge.html#model-comparison",
-    "title": "SEPTA Bus Ridership Prediction",
-    "section": "Model Comparison",
-    "text": "Model Comparison\n\n\n\nModel\nMAE\nRMSE\n\n\n\n\nOLS(ln_riders)\n1.18\n1.50\n\n\nSpatial Lag(ln_riders)\n1.14\n1.47\n\n\nPoisson\n523\n1475.21\n\n\nNegative Binomial\n523\n1473.69\n\n\n\n\nThe Negative Binomial is our best model\nPoisson assumes mean equals variance — almost never true for ridership data\nThe Negative Binomial’s dispersion parameter better handles overdispersion, producing more trustworthy standard errors and p-values"
-  },
-  {
-    "objectID": "lab_6/PPA_Final_Model_Challenge.html#actual-vs.-predicted-ridership",
-    "href": "lab_6/PPA_Final_Model_Challenge.html#actual-vs.-predicted-ridership",
-    "title": "SEPTA Bus Ridership Prediction",
-    "section": "Actual vs. Predicted Ridership",
-    "text": "Actual vs. Predicted Ridership"
-  },
-  {
-    "objectID": "lab_6/PPA_Final_Model_Challenge.html#limitations-bias-considerations",
-    "href": "lab_6/PPA_Final_Model_Challenge.html#limitations-bias-considerations",
-    "title": "SEPTA Bus Ridership Prediction",
-    "section": "Limitations & Bias Considerations",
-    "text": "Limitations & Bias Considerations\nMulticollinearity\n\nPopulation, route count, and nearby jobs are correlated — limits our ability to isolate the effect of any single predictor\n\nModel is Anchored to Current Conditions\n\nPredictions reflect existing ridership under existing infrastructure\nA transit desert predicts low ridership — not because demand is absent, but because supply was never provided\nThis risks reinforcing existing inequities in transit access\nWe excluded cells that contain bus hubs with 10+ lines – these would require their own models"
-  },
-  {
-    "objectID": "lab_6/PPA_Final_Model_Challenge.html#recommendations-for-implementation",
-    "href": "lab_6/PPA_Final_Model_Challenge.html#recommendations-for-implementation",
-    "title": "SEPTA Bus Ridership Prediction",
-    "section": "Recommendations for Implementation",
-    "text": "Recommendations for Implementation\nHow would the city use our model?\n\n⁠⁠The model can be used for analyzing and identifying areas with higher ridership to create a investment strategies (grid cells with high predicted ridership and low current ridership)\n⁠⁠Consolidate or reduce service in areas where there is low predicted ridership\n⁠⁠Simply use the model to predict future ridership to plan capacity building within SEPTA"
-  },
-  {
-    "objectID": "lab_6/PPA_Final_Model_Challenge.html#example-model-implementation",
-    "href": "lab_6/PPA_Final_Model_Challenge.html#example-model-implementation",
-    "title": "SEPTA Bus Ridership Prediction",
-    "section": "Example Model Implementation",
-    "text": "Example Model Implementation\n\nPriority determined by predicted ridership minus actual ridership\n\nHigh gap = predicted ridership is much higher than actual\nModerate gap = predicted is slightly more than actual\nSmall gap = predicted is more or less on-par with actual"
-  },
-  {
-    "objectID": "lab_6/PPA_Final_Model_Challenge.html#questions",
-    "href": "lab_6/PPA_Final_Model_Challenge.html#questions",
-    "title": "SEPTA Bus Ridership Prediction",
-    "section": "Questions?",
-    "text": "Questions?"
   },
   {
     "objectID": "lab_6/Final_Model_TechnicalAppendix.html",
